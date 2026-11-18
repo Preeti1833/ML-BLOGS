@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A beginner-friendly guide to Logistic Regression, with formulas, Python examples, graphs, and interactive predictions.">
+  <title>Logistic Regression | ML Learn</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="#home" class="logo">ML<span>Learn.</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+  <nav id="navLinks">
+    <a href="#intro">Introduction</a>
+    <a href="#formula">Formula</a>
+    <a href="#example">Example</a>
+    <a href="#python">Python Code</a>
+    <a href="#quiz">Quiz</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="eyebrow">MACHINE LEARNING • BEGINNER'S GUIDE</span>
+      <h1>Understand <span>Logistic Regression</span></h1>
+      <p>Learn how machines predict categories using probabilities, simple mathematics, and Python.</p>
+      <div class="hero-buttons">
+        <a class="btn primary" href="#intro">Start Learning →</a>
+        <a class="btn secondary" href="#python">Explore Python</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>01</strong><small>Core concept</small></div>
+        <div><strong>02</strong><small>Formula & graph</small></div>
+        <div><strong>03</strong><small>Python example</small></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-card">
+        <span class="mini-label">SIGMOID FUNCTION</span>
+        <div class="sigmoid-icon">S</div>
+        <h3>Probability → Prediction</h3>
+        <p>Turn a model score into a probability between 0 and 1.</p>
+        <div class="probability"><span>0.92</span><span class="status">High probability</span></div>
+        <div class="progress"><span></span></div>
+      </div>
+      <div class="floating-tag">✓ Classification</div>
+    </div>
+  </section>
+
+  <section class="section" id="intro">
+    <div class="section-heading">
+      <span class="eyebrow">01 / INTRODUCTION</span>
+      <h2>What is Logistic Regression?</h2>
+      <p>Logistic Regression is a supervised machine learning algorithm mainly used to predict categories.</p>
+    </div>
+    <div class="three-cards">
+      <article class="info-card">
+        <div class="card-icon">🎯</div>
+        <h3>Classification</h3>
+        <p>Predicts a class such as Pass or Fail, Yes or No, and Approved or Denied.</p>
+      </article>
+      <article class="info-card">
+        <div class="card-icon">📊</div>
+        <h3>Probability</h3>
+        <p>Estimates the probability that an observation belongs to a particular class.</p>
+      </article>
+      <article class="info-card">
+        <div class="card-icon">🧠</div>
+        <h3>Supervised Learning</h3>
+        <p>Learns from labelled examples where the correct category is already known.</p>
+      </article>
+    </div>
+    <div class="note">
+      <strong>Remember:</strong> Linear Regression predicts a numerical value, while Logistic Regression is commonly used to predict a category.
+    </div>
+  </section>
+
+  <section class="section tinted" id="how">
+    <div class="section-heading">
+      <span class="eyebrow">02 / HOW IT WORKS</span>
+      <h2>From data to prediction</h2>
+      <p>The model learns a relationship between input features and the target category.</p>
+    </div>
+    <div class="steps">
+      <article class="step"><span>1</span><h3>Collect data</h3><p>Gather examples such as study hours and student results.</p></article>
+      <div class="step-arrow">→</div>
+      <article class="step"><span>2</span><h3>Train model</h3><p>The algorithm learns patterns from labelled data.</p></article>
+      <div class="step-arrow">→</div>
+      <article class="step"><span>3</span><h3>Calculate probability</h3><p>The sigmoid function converts the model score into a probability.</p></article>
+      <div class="step-arrow">→</div>
+      <article class="step"><span>4</span><h3>Predict class</h3><p>A decision threshold converts probability into a class label.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="uses">
+    <div class="section-heading">
+      <span class="eyebrow">03 / APPLICATIONS</span>
+      <h2>Where is it used?</h2>
+      <p>Logistic Regression is useful when the outcome belongs to a category.</p>
+    </div>
+    <div class="use-grid">
+      <article class="use-card"><span>🏦</span><h3>Banking</h3><p>Estimate the probability of loan approval or default.</p></article>
+      <article class="use-card"><span>🏥</span><h3>Healthcare</h3><p>Estimate the probability of a particular medical outcome.</p></article>
+      <article class="use-card"><span>📧</span><h3>Email filtering</h3><p>Classify emails as spam or not spam.</p></article>
+      <article class="use-card"><span>🎓</span><h3>Education</h3><p>Estimate whether a student may pass or fail.</p></article>
+      <article class="use-card"><span>🛒</span><h3>E-commerce</h3><p>Predict whether a customer may purchase a product.</p></article>
+      <article class="use-card"><span>🔐</span><h3>Cybersecurity</h3><p>Help classify activity as suspicious or not suspicious.</p></article>
+    </div>
+  </section>
+
+  <section class="section tinted" id="understanding">
+    <div class="section-heading">
+      <span class="eyebrow">04 / UNDERSTANDING THE CONCEPT</span>
+      <h2>Why the sigmoid function?</h2>
+      <p>A linear score can have any value. The sigmoid function converts it into a value between 0 and 1.</p>
+    </div>
+    <div class="concept-layout">
+      <div class="concept-copy">
+        <h3>Understanding probability</h3>
+        <p>A probability closer to 1 indicates stronger support for the positive class. A probability closer to 0 indicates stronger support for the negative class.</p>
+        <ul class="check-list">
+          <li>Probability is between 0 and 1.</li>
+          <li>0.5 is a common classification threshold.</li>
+          <li>The threshold can change depending on the application.</li>
+          <li>The predicted probability is not a guarantee.</li>
+        </ul>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title"><div><h3>Sigmoid Curve</h3><p>Model score versus probability</p></div><span class="chart-badge">0 to 1</span></div>
+        <canvas id="sigmoidCanvas" aria-label="Graph of the sigmoid function"></canvas>
+        <div class="chart-legend"><span><i class="legend-line"></i> Sigmoid curve</span><span><i class="legend-dash"></i> Threshold = 0.5</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="formula">
+    <div class="section-heading">
+      <span class="eyebrow">05 / MATHEMATICAL FORMULA</span>
+      <h2>The Logistic Regression formula</h2>
+      <p>The sigmoid function transforms a linear score into a probability.</p>
+    </div>
+    <div class="formula-card">
+      <span class="formula-label">SIGMOID FUNCTION</span>
+      <div class="formula">P(Y = 1 | X) = <span class="fraction"><span>1</span><span>1 + e<sup>−z</sup></span></span></div>
+      <p class="formula-secondary">where z = b₀ + b₁x₁ + b₂x₂ + ... + bₙxₙ</p>
+      <div class="formula-details">
+        <div><strong>P(Y = 1 | X)</strong><span>Probability of the positive class</span></div>
+        <div><strong>e</strong><span>Euler's number, approximately 2.718</span></div>
+        <div><strong>b₀</strong><span>Intercept or bias</span></div>
+        <div><strong>b₁, b₂, ...</strong><span>Learned model coefficients</span></div>
+        <div><strong>x₁, x₂, ...</strong><span>Input features</span></div>
+      </div>
+    </div>
+    <div class="note"><strong>Decision rule:</strong> With a threshold of 0.5, predict class 1 when the probability is at least 0.5; otherwise predict class 0. Other thresholds may be appropriate.</div>
+  </section>
+
+  <section class="section tinted" id="example">
+    <div class="section-heading">
+      <span class="eyebrow">06 / REAL-LIFE EXAMPLE</span>
+      <h2>Will a student pass?</h2>
+      <p>Imagine estimating the probability of passing an exam based on study hours.</p>
+    </div>
+    <div class="example-layout">
+      <div class="example-data">
+        <h3>Sample training data</h3>
+        <table>
+          <thead><tr><th>Study hours</th><th>Result</th><th>Class</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Fail</td><td><span class="class-tag fail">0</span></td></tr>
+            <tr><td>2</td><td>Fail</td><td><span class="class-tag fail">0</span></td></tr>
+            <tr><td>3</td><td>Pass</td><td><span class="class-tag pass">1</span></td></tr>
+            <tr><td>4</td><td>Pass</td><td><span class="class-tag pass">1</span></td></tr>
+            <tr><td>5</td><td>Pass</td><td><span class="class-tag pass">1</span></td></tr>
+          </tbody>
+        </table>
+        <p class="table-note">Illustrative data for learning, not a real student's results.</p>
+      </div>
+      <div class="calculator-card">
+        <span class="eyebrow">TRY IT YOURSELF</span>
+        <h3>Prediction explorer</h3>
+        <p>Adjust the probability to see how the threshold changes the predicted class.</p>
+        <label for="probabilitySlider">Estimated probability</label>
+        <input type="range" id="probabilitySlider" min="0" max="100" value="72">
+        <div class="slider-values"><span>0%</span><strong id="probabilityValue">72%</strong><span>100%</span></div>
+        <label for="thresholdSelect">Decision threshold</label>
+        <select id="thresholdSelect">
+          <option value="0.5" selected>0.50 (50%)</option>
+          <option value="0.6">0.60 (60%)</option>
+          <option value="0.7">0.70 (70%)</option>
+        </select>
+        <div class="prediction-result" id="predictionResult" aria-live="polite">
+          <span class="result-icon">✓</span>
+          <div><small>Predicted class</small><h3 id="predictedClass">Pass (Class 1)</h3></div>
+        </div>
+        <p class="table-note">This explorer demonstrates the decision rule. It is not a trained model.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="python">
+    <div class="section-heading">
+      <span class="eyebrow">07 / PYTHON IMPLEMENTATION</span>
+      <h2>Build your first model</h2>
+      <p>Use Scikit-learn to train a Logistic Regression model on a small student dataset.</p>
+    </div>
+    <div class="code-card">
+      <div class="code-header"><div><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span><strong>logistic_regression.py</strong></div><button class="copy-btn" data-copy="pythonCode">Copy Code</button></div>
+      <pre><code id="pythonCode">from sklearn.linear_model import LogisticRegression
+
+# Study hours and exam results
+X = [[1], [2], [3], [4], [5], [6]]
+y = [0, 0, 0, 1, 1, 1]  # 0 = Fail, 1 = Pass
+
+# Create and train the model
+model = LogisticRegression()
+model.fit(X, y)
+
+# Predict the result for a student studying 4 hours
+hours = [[4]]
+prediction = model.predict(hours)[0]
+probability = model.predict_proba(hours)[0][1]
+
+print("Predicted class:", prediction)
+print("Predicted result:",
+      "Pass" if prediction == 1 else "Fail")
+print("Probability of passing:",
+      round(probability, 3))</code></pre>
+    </div>
+    <div class="output-card">
+      <div class="output-header"><span>▶ SAMPLE OUTPUT</span><button class="copy-btn" data-copy="sampleOutput">Copy Output</button></div>
+      <pre id="sampleOutput">Predicted class: 1
+Predicted result: Pass
+Probability of passing: (depends on the fitted model)</pre>
+      <p class="table-note">The exact probability depends on the fitted model and library version. Run the code to see the actual value.</p>
+    </div>
+    <div class="note"><strong>Install the library:</strong> Open your terminal and run <code>python -m pip install scikit-learn</code>. Then save the code as <code>logistic_regression.py</code> and run <code>python logistic_regression.py</code>.</div>
+  </section>
+
+  <section class="section tinted" id="evaluation">
+    <div class="section-heading">
+      <span class="eyebrow">08 / MODEL EVALUATION</span>
+      <h2>How do we evaluate it?</h2>
+      <p>Use test data and appropriate metrics to check how well the classifier performs.</p>
+    </div>
+    <div class="three-cards">
+      <article class="info-card"><div class="card-icon">🎯</div><h3>Accuracy</h3><p>Proportion of all predictions that are correct.</p><code>Correct predictions / Total</code></article>
+      <article class="info-card"><div class="card-icon">🔎</div><h3>Precision</h3><p>Among positive predictions, the proportion that are correct.</p><code>TP / (TP + FP)</code></article>
+      <article class="info-card"><div class="card-icon">📈</div><h3>Recall</h3><p>Among actual positive cases, the proportion correctly identified.</p><code>TP / (TP + FN)</code></article>
+    </div>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="quiz-card">
+      <div class="quiz-content">
+        <span class="eyebrow">QUICK KNOWLEDGE CHECK</span>
+        <h2>Test your understanding</h2>
+        <p>Which function converts the model score into a probability between 0 and 1?</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-answer="wrong">Linear function</button>
+          <button class="quiz-option" data-answer="correct">Sigmoid function</button>
+          <button class="quiz-option" data-answer="wrong">Square root function</button>
+        </div>
+        <p id="quizFeedback" aria-live="polite"></p>
+      </div>
+      <div class="quiz-art">?</div>
+    </div>
+  </section>
+
+  <section class="section conclusion">
+    <span class="eyebrow">09 / CONCLUSION</span>
+    <h2>Turning probabilities into decisions</h2>
+    <p>Logistic Regression is a simple and widely used classification algorithm. It uses a sigmoid function to estimate probabilities and a decision threshold to assign classes. It is a useful starting point for learning machine learning classification.</p>
+    <a href="#home" class="btn primary">Back to Top ↑</a>
+  </section>
+</main>
+
+<footer>
+  <a href="#home" class="logo">ML<span>Learn.</span></a>
+  <p>A beginner-friendly Machine Learning learning blog.</p>
+  <p>© <span id="year"></span> ML Learn. Created for educational purposes.</p>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
