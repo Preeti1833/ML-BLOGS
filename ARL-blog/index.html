@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Association Rule Learning | ML Learn</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="brand" href="#home">✦ ML Learn</a>
+  <div class="nav-links">
+    <a href="#intro">Intro</a>
+    <a href="#understanding">Understanding</a>
+    <a href="#formula">Formula</a>
+    <a href="#python">Python</a>
+    <a href="#demo">Interactive Demo</a>
+  </div>
+  <a class="nav-cta" href="#demo">Explore Rules ↗</a>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-content">
+    <span class="eyebrow">MACHINE LEARNING • UNSUPERVISED LEARNING</span>
+    <h1>Association Rule<br><span>Learning</span></h1>
+    <p>
+      Discover hidden relationships between items and understand
+      how businesses use purchasing patterns to make smarter decisions.
+    </p>
+    <div class="hero-buttons">
+      <a href="#understanding" class="btn primary">Start Learning →</a>
+      <a href="#demo" class="btn secondary">Try Interactive Demo</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>01</strong><small>Find patterns</small></div>
+      <div><strong>02</strong><small>Discover rules</small></div>
+      <div><strong>03</strong><small>Make decisions</small></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="visual-label">DISCOVER CONNECTIONS</div>
+    <div class="item-node node-one">🍞<small>Bread</small></div>
+    <div class="item-node node-two">🥛<small>Milk</small></div>
+    <div class="item-node node-three">🧈<small>Butter</small></div>
+    <div class="connector line-one"></div>
+    <div class="connector line-two"></div>
+    <div class="rule-card">
+      <span>💡 RULE DISCOVERED</span>
+      <strong>Bread → Butter</strong>
+      <small>Items frequently purchased together</small>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="panel" id="intro">
+    <span class="section-label">01 — INTRODUCTION</span>
+    <h2>What is Association Rule Learning?</h2>
+    <p>
+      Association Rule Learning is an unsupervised machine learning
+      technique used to discover relationships between items in large datasets.
+      It identifies which items frequently occur together.
+    </p>
+    <div class="highlight">
+      <span>🎯</span>
+      <div>
+        <strong>Simple idea</strong>
+        <p>If customers often buy bread and butter together, a store can
+        discover this pattern and recommend related products.</p>
+      </div>
+    </div>
+    <div class="three-grid">
+      <article class="mini-card">
+        <div class="icon">🔍</div>
+        <h3>Discover</h3>
+        <p>Find patterns hidden in transaction data.</p>
+      </article>
+      <article class="mini-card">
+        <div class="icon">🔗</div>
+        <h3>Connect</h3>
+        <p>Identify relationships between different items.</p>
+      </article>
+      <article class="mini-card">
+        <div class="icon">📈</div>
+        <h3>Improve</h3>
+        <p>Use discovered patterns to support decisions.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="panel" id="how">
+    <span class="section-label">02 — WORKING</span>
+    <h2>How Is It Used?</h2>
+    <p>Association Rule Learning generally follows these steps:</p>
+    <div class="steps">
+      <article class="step">
+        <span class="step-number">01</span>
+        <div><h3>Collect Data</h3><p>Gather shopping transactions or other item-based records.</p></div>
+      </article>
+      <article class="step">
+        <span class="step-number">02</span>
+        <div><h3>Find Frequent Itemsets</h3><p>Identify combinations of items that appear frequently.</p></div>
+      </article>
+      <article class="step">
+        <span class="step-number">03</span>
+        <div><h3>Generate Rules</h3><p>Create rules such as Bread → Butter.</p></div>
+      </article>
+      <article class="step">
+        <span class="step-number">04</span>
+        <div><h3>Evaluate Rules</h3><p>Use support, confidence and lift to measure relationships.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="panel" id="where">
+    <span class="section-label">03 — APPLICATIONS</span>
+    <h2>Where Is It Used?</h2>
+    <p>This technique is useful wherever relationships between items or events matter.</p>
+    <div class="three-grid">
+      <article class="mini-card">
+        <div class="icon">🛒</div><h3>Retail Stores</h3>
+        <p>Discover products customers often purchase together.</p>
+      </article>
+      <article class="mini-card">
+        <div class="icon">🛍️</div><h3>E-commerce</h3>
+        <p>Recommend related products on shopping websites.</p>
+      </article>
+      <article class="mini-card">
+        <div class="icon">🏥</div><h3>Healthcare</h3>
+        <p>Explore patterns among recorded symptoms or events.</p>
+      </article>
+      <article class="mini-card">
+        <div class="icon">🏦</div><h3>Banking</h3>
+        <p>Explore relationships between customer service usage patterns.</p>
+      </article>
+      <article class="mini-card">
+        <div class="icon">📱</div><h3>Streaming</h3>
+        <p>Identify content combinations that users engage with.</p>
+      </article>
+      <article class="mini-card">
+        <div class="icon">📦</div><h3>Inventory</h3>
+        <p>Support product bundling and stock planning.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="panel" id="understanding">
+    <span class="section-label">04 — UNDERSTANDING</span>
+    <h2>Three Important Measures</h2>
+    <p>These measures help us evaluate the strength and usefulness of an association rule.</p>
+    <div class="metric-grid">
+      <article class="metric-card">
+        <span class="metric-symbol">S</span>
+        <h3>Support</h3>
+        <p>How frequently the items in a rule appear together in all transactions.</p>
+        <div class="metric-example">Higher support = more common combination</div>
+      </article>
+      <article class="metric-card">
+        <span class="metric-symbol">C</span>
+        <h3>Confidence</h3>
+        <p>How often the consequent appears when the antecedent appears.</p>
+        <div class="metric-example">Higher confidence = more reliable prediction</div>
+      </article>
+      <article class="metric-card">
+        <span class="metric-symbol">L</span>
+        <h3>Lift</h3>
+        <p>How strongly the items are associated compared with independent occurrence.</p>
+        <div class="metric-example">Lift above 1 suggests positive association</div>
+      </article>
+    </div>
+    <div class="note">
+      <strong>Remember:</strong> A high confidence value alone does not prove a
+      strong relationship. Lift helps compare the rule against the item's
+      overall frequency.
+    </div>
+  </section>
+
+  <section class="panel" id="formula">
+    <span class="section-label">05 — FORMULAS</span>
+    <h2>Mathematical Formulas</h2>
+    <p>Let A and B represent two itemsets, and N be the total number of transactions.</p>
+    <div class="formula-list">
+      <div class="formula-card">
+        <span>SUPPORT</span>
+        <div class="formula">Support(A → B) = Count(A ∪ B) / N</div>
+        <p>Fraction of transactions containing both A and B.</p>
+      </div>
+      <div class="formula-card">
+        <span>CONFIDENCE</span>
+        <div class="formula">Confidence(A → B) = Support(A ∪ B) / Support(A)</div>
+        <p>Probability of B occurring when A occurs, estimated from the data.</p>
+      </div>
+      <div class="formula-card">
+        <span>LIFT</span>
+        <div class="formula">Lift(A → B) = Confidence(A → B) / Support(B)</div>
+        <p>Compares the rule's confidence with B's overall support.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="real-life">
+    <span class="section-label">06 — REAL-LIFE EXAMPLE</span>
+    <h2>The Supermarket Basket</h2>
+    <p>Imagine a store examining these five customer transactions:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Transaction</th><th>Items Purchased</th></tr></thead>
+        <tbody>
+          <tr><td>T1</td><td>🍞 Bread, 🥛 Milk</td></tr>
+          <tr><td>T2</td><td>🍞 Bread, 🧈 Butter, 🥛 Milk</td></tr>
+          <tr><td>T3</td><td>🍞 Bread, 🧈 Butter</td></tr>
+          <tr><td>T4</td><td>🥛 Milk, 🧈 Butter</td></tr>
+          <tr><td>T5</td><td>🍞 Bread, 🥛 Milk</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="result-banner">
+      <div class="result-icon">🧠</div>
+      <div>
+        <strong>Possible discovered rule: Bread → Milk</strong>
+        <p>Bread appears in 4 transactions, and Bread with Milk appears in 3.</p>
+        <div class="result-stats">
+          <span>Support: <b>60%</b></span>
+          <span>Confidence: <b>75%</b></span>
+          <span>Lift: <b>0.94</b></span>
+        </div>
+      </div>
+    </div>
+    <p class="small-note">
+      These values are calculated from the five transactions shown.
+      The lift is below 1, so this example does not show a positive association
+      between Bread and Milk compared with Milk's overall frequency.
+    </p>
+  </section>
+
+  <section class="panel" id="example">
+    <span class="section-label">07 — WORKED EXAMPLE</span>
+    <h2>Calculate a Rule Step by Step</h2>
+    <p>Consider the rule <b>Bread → Butter</b> using the same transactions.</p>
+    <div class="calculation-grid">
+      <div class="calc-card">
+        <span>STEP 1</span><h3>Support</h3>
+        <p>Both Bread and Butter occur together in T2 and T3.</p>
+        <div class="calc-value">2 / 5 = 40%</div>
+      </div>
+      <div class="calc-card">
+        <span>STEP 2</span><h3>Confidence</h3>
+        <p>Bread occurs in 4 transactions; both items occur in 2.</p>
+        <div class="calc-value">2 / 4 = 50%</div>
+      </div>
+      <div class="calc-card">
+        <span>STEP 3</span><h3>Lift</h3>
+        <p>Butter occurs in 3 out of 5 transactions.</p>
+        <div class="calc-value">0.50 / 0.60 = 0.83</div>
+      </div>
+    </div>
+    <div class="note">
+      <strong>Conclusion:</strong> In this small example, Bread and Butter
+      occur together in 40% of transactions. Their lift is below 1, so the
+      data does not indicate a positive association.
+    </div>
+  </section>
+
+  <section class="panel" id="python">
+    <span class="section-label">08 — PYTHON CODE</span>
+    <h2>Implement Association Rules in Python</h2>
+    <p>This beginner-friendly example uses the <b>mlxtend</b> library and the Apriori algorithm.</p>
+    <div class="code-toolbar">
+      <span>association_rules.py</span>
+      <button id="copyCode" class="copy-btn">Copy Code</button>
+    </div>
+    <pre><code id="pythonCode">import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Sample shopping transactions
+transactions = [
+    ["Bread", "Milk"],
+    ["Bread", "Butter", "Milk"],
+    ["Bread", "Butter"],
+    ["Milk", "Butter"],
+    ["Bread", "Milk"]
+]
+
+# Convert transactions into a Boolean table
+encoder = TransactionEncoder()
+encoded = encoder.fit(transactions).transform(transactions)
+df = pd.DataFrame(encoded, columns=encoder.columns_)
+
+print("Transaction Data:")
+print(df.astype(int))
+
+# Find frequent itemsets
+frequent_items = apriori(
+    df, min_support=0.2, use_colnames=True
+)
+
+print("\\nFrequent Itemsets:")
+print(frequent_items)
+
+# Generate association rules
+rules = association_rules(
+    frequent_items, metric="confidence", min_threshold=0.5
+)
+
+print("\\nAssociation Rules:")
+print(rules[["antecedents", "consequents",
+             "support", "confidence", "lift"]].round(2))</code></pre>
+    <div class="install-box">
+      <span>⚙️ Installation</span>
+      <code>pip install pandas mlxtend</code>
+    </div>
+  </section>
+
+  <section class="panel" id="output">
+    <span class="section-label">09 — SAMPLE OUTPUT</span>
+    <h2>What Does the Output Show?</h2>
+    <p>The code displays the encoded transaction table, frequent itemsets, and generated rules.</p>
+    <pre class="output"><code>Transaction Data:
+   Bread  Butter  Milk
+0      1       0     1
+1      1       1     1
+2      1       1     0
+3      0       1     1
+4      1       0     1
+
+Frequent Itemsets:
+   Itemsets
+   {Bread}
+   {Butter}
+   {Milk}
+   {Bread, Butter}
+   {Bread, Milk}
+   {Butter, Milk}
+   {Bread, Butter, Milk}
+
+Example Rule:
+{Bread} -> {Milk}
+Support: 0.60
+Confidence: 0.75
+Lift: 0.94</code></pre>
+    <p class="small-note">
+      The output is a simplified illustration. The actual code prints a table
+      of frequent itemsets and all qualifying rules, so the exact rows and order
+      may differ.
+    </p>
+  </section>
+
+  <section class="panel" id="demo">
+    <span class="section-label">10 — INTERACTIVE DEMO</span>
+    <h2>Explore an Association Rule</h2>
+    <p>Select a rule to explore how support, confidence and lift change.</p>
+    <div class="demo-controls">
+      <label for="ruleSelect">Choose a rule</label>
+      <select id="ruleSelect">
+        <option value="breadButter">Bread → Butter</option>
+        <option value="breadMilk">Bread → Milk</option>
+        <option value="milkBread">Milk → Bread</option>
+      </select>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-metric">
+        <span>SUPPORT</span><strong id="supportValue">40%</strong>
+        <div class="progress"><div id="supportBar"></div></div>
+      </div>
+      <div class="demo-metric">
+        <span>CONFIDENCE</span><strong id="confidenceValue">50%</strong>
+        <div class="progress"><div id="confidenceBar"></div></div>
+      </div>
+      <div class="demo-metric">
+        <span>LIFT</span><strong id="liftValue">0.83</strong>
+        <div class="progress"><div id="liftBar"></div></div>
+      </div>
+    </div>
+    <div class="demo-explanation" id="ruleExplanation">
+      Bread and Butter occur together in 2 of 5 transactions.
+    </div>
+    <div class="chart-box">
+      <h3>Item Frequency in the Dataset</h3>
+      <div id="frequencyChart" class="bar-chart"></div>
+    </div>
+    <p class="small-note">This interactive demonstration uses the five example transactions above.</p>
+  </section>
+
+  <section class="panel" id="conclusion">
+    <span class="section-label">11 — CONCLUSION</span>
+    <h2>Key Takeaways</h2>
+    <p>
+      Association Rule Learning discovers useful relationships between items
+      by analysing transaction data. Algorithms such as Apriori help find
+      frequent itemsets and generate rules that can support recommendations,
+      product placement and business decisions.
+    </p>
+    <div class="takeaways">
+      <div>✓ Support measures frequency.</div>
+      <div>✓ Confidence measures conditional frequency.</div>
+      <div>✓ Lift compares a rule against independent occurrence.</div>
+      <div>✓ Rules describe associations, not necessarily causation.</div>
+    </div>
+    <a class="back-top" href="#home">↑ Back to Top</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">✦ ML Learn</div>
+  <p>Learn Machine Learning, one concept at a time.</p>
+  <small>Association Rule Learning • Educational Project</small>
+</footer>
+
+</body>
+</html>
