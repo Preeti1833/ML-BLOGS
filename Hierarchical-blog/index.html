@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#172554">
+  <title>Hierarchical Clustering | ML Blogs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="#home" class="brand"><span class="brand-icon">✳</span> ML Learn</a>
+    <span class="brand-subtitle">Learn · Build · Grow</span>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#how">How It Works</a>
+      <a href="#math">Formula</a>
+      <a href="#demo">Interactive Demo</a>
+      <a href="#python">Python</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="tag">UNSUPERVISED LEARNING</span>
+        <h1>Hierarchical<br>Clustering<span>.</span></h1>
+        <h2>Discover natural groupings in your data — step by step.</h2>
+        <p>
+          Hierarchical Clustering creates a tree of groups called a hierarchy.
+          Explore how similar data points join together and how a dendrogram
+          helps us understand the relationships between them.
+        </p>
+        <div class="hero-pills">
+          <span>✓ Builds a hierarchy</span>
+          <span>✓ Visualized with a dendrogram</span>
+          <span>✓ Multiple linkage methods</span>
+        </div>
+        <a class="primary-btn" href="#demo">Explore the interactive demo ↗</a>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-card dendro-hero">
+          <h3>Dendrogram</h3>
+          <canvas id="heroTree" aria-label="Illustration of a dendrogram"></canvas>
+          <p>Distance between merged groups</p>
+        </div>
+        <div class="visual-card cluster-hero">
+          <h3>Data Clusters</h3>
+          <canvas id="heroClusters" aria-label="Illustration of three data clusters"></canvas>
+          <p>Similar points form groups</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-facts">
+      <article><span class="fact-icon purple">↗</span><div><strong>Unsupervised</strong><small>Learning type</small></div></article>
+      <article><span class="fact-icon blue">⌘</span><div><strong>Tree structure</strong><small>Hierarchy of groups</small></div></article>
+      <article><span class="fact-icon green">⌕</span><div><strong>Linkage methods</strong><small>Different merge rules</small></div></article>
+    </section>
+
+    <section class="section" id="how">
+      <div class="section-heading">
+        <span class="eyebrow">01 — INTRODUCTION</span>
+        <h2>How does it work?</h2>
+        <p>
+          Hierarchical Clustering groups similar data points into a hierarchy.
+          The agglomerative approach starts with individual points and
+          repeatedly merges the closest groups.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <article class="step-card">
+          <span class="step-number">01</span>
+          <div class="step-icon">📏</div>
+          <h3>Measure distance</h3>
+          <p>Calculate how far the data points or clusters are from one another.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">02</span>
+          <div class="step-icon">🔗</div>
+          <h3>Merge groups</h3>
+          <p>Join the two closest clusters according to the selected linkage method.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">03</span>
+          <div class="step-icon">🌳</div>
+          <h3>Build the tree</h3>
+          <p>Record each merge in a tree-like diagram called a dendrogram.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">04</span>
+          <div class="step-icon">✂️</div>
+          <h3>Choose clusters</h3>
+          <p>Cut the hierarchy at a selected level to obtain the desired groups.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section soft-section" id="where">
+      <div class="section-heading">
+        <span class="eyebrow">02 — APPLICATIONS</span>
+        <h2>Where is it used?</h2>
+        <p>Hierarchical clustering helps explore relationships in many types of data.</p>
+      </div>
+      <div class="applications-grid">
+        <article class="application-card">
+          <div class="application-icon">🛍️</div>
+          <h3>Customer Segmentation</h3>
+          <p>Discover customer groups based on purchasing habits and behavior.</p>
+        </article>
+        <article class="application-card">
+          <div class="application-icon">🧬</div>
+          <h3>Biology</h3>
+          <p>Group genes or biological samples with similar characteristics.</p>
+        </article>
+        <article class="application-card">
+          <div class="application-icon">📰</div>
+          <h3>Document Analysis</h3>
+          <p>Organize articles and documents by similarities in their content.</p>
+        </article>
+        <article class="application-card">
+          <div class="application-icon">📊</div>
+          <h3>Exploratory Analysis</h3>
+          <p>Explore nested patterns before deciding on a final grouping.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="understanding">
+      <div class="section-heading">
+        <span class="eyebrow">03 — UNDERSTANDING</span>
+        <h2>Two ways to build a hierarchy</h2>
+        <p>The algorithm can build the hierarchy from the bottom up or the top down.</p>
+      </div>
+      <div class="method-grid">
+        <article class="method-card featured">
+          <span class="method-label">MOST COMMON APPROACH</span>
+          <h3>Agglomerative Clustering</h3>
+          <p>Bottom-up approach: each point starts as its own cluster, and the closest clusters are merged repeatedly.</p>
+          <div class="mini-flow"><span>●</span><span>●</span><b>→</b><span>●●</span><b>→</b><span>●●●</span></div>
+        </article>
+        <article class="method-card">
+          <span class="method-label">ALTERNATIVE APPROACH</span>
+          <h3>Divisive Clustering</h3>
+          <p>Top-down approach: all points begin in one cluster, which is repeatedly split into smaller groups.</p>
+          <div class="mini-flow"><span>●●●●</span><b>→</b><span>●●</span><span>●●</span></div>
+        </article>
+      </div>
+
+      <div class="dendrogram-explain">
+        <div class="dendro-icon">🌳</div>
+        <div>
+          <h3>What is a dendrogram?</h3>
+          <p>A dendrogram is a tree diagram showing the order in which clusters merge. The height of a merge represents the distance or dissimilarity at which two groups are joined.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section formula-section" id="math">
+      <div class="section-heading">
+        <span class="eyebrow">04 — FORMULA</span>
+        <h2>Average linkage distance</h2>
+        <p>Different linkage methods define the distance between two clusters differently.</p>
+      </div>
+      <div class="formula-card">
+        <span class="formula-label">AVERAGE LINKAGE</span>
+        <div class="formula">
+          <i>d</i>(A, B) =
+          <span class="fraction">
+            <span>1</span>
+            <span>|A| × |B|</span>
+          </span>
+          ∑<sub>x ∈ A</sub> ∑<sub>y ∈ B</sub> d(x, y)
+        </div>
+        <p class="formula-intro">Where:</p>
+        <ul>
+          <li><strong>A and B</strong> are two clusters.</li>
+          <li><strong>d(x, y)</strong> is the distance between two data points.</li>
+          <li><strong>|A| and |B|</strong> are the number of points in each cluster.</li>
+        </ul>
+        <div class="linkage-summary">
+          <div><strong>Single</strong><span>Minimum pairwise distance</span></div>
+          <div><strong>Complete</strong><span>Maximum pairwise distance</span></div>
+          <div><strong>Average</strong><span>Mean pairwise distance</span></div>
+          <div><strong>Ward</strong><span>Minimizes increase in within-cluster variance</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-section" id="demo">
+      <div class="section-heading">
+        <span class="eyebrow">05 — INTERACTIVE LAB</span>
+        <h2>Explore the dendrogram</h2>
+        <p>Change the linkage method or cluster count. Watch how the hierarchy and the data groups change.</p>
+      </div>
+
+      <div class="demo-card">
+        <div class="controls">
+          <div class="control-field">
+            <label for="linkage">Linkage method</label>
+            <select id="linkage">
+              <option value="average">Average Linkage</option>
+              <option value="single">Single Linkage</option>
+              <option value="complete">Complete Linkage</option>
+              <option value="ward">Ward Linkage</option>
+            </select>
+          </div>
+          <div class="control-field cluster-control">
+            <label for="clusterCount">Number of clusters: <strong id="clusterValue">3</strong></label>
+            <input type="range" id="clusterCount" min="2" max="7" value="3">
+            <div class="range-labels"><span>2 groups</span><span>7 groups</span></div>
+          </div>
+          <button class="reset-btn" id="resetDemo">Reset ↻</button>
+        </div>
+
+        <div class="chart-grid">
+          <article class="chart-panel">
+            <div class="chart-title"><span>01</span><div><h3>Dendrogram</h3><p>Vertical height indicates merge distance</p></div></div>
+            <div class="chart-container tree-container">
+              <canvas id="dendrogram" aria-label="Interactive hierarchical clustering dendrogram"></canvas>
+            </div>
+          </article>
+          <article class="chart-panel">
+            <div class="chart-title"><span>02</span><div><h3>Cluster visualization</h3><p>Colors indicate current cluster membership</p></div></div>
+            <div class="chart-container scatter-container">
+              <canvas id="scatter" aria-label="Interactive cluster scatter plot"></canvas>
+            </div>
+          </article>
+        </div>
+        <div class="demo-legend" id="demoLegend"></div>
+        <p class="demo-status" id="demoStatus" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="section example-section" id="example">
+      <div class="section-heading">
+        <span class="eyebrow">06 — REAL-LIFE EXAMPLE</span>
+        <h2>Customer segmentation</h2>
+        <p>Imagine a shop wants to discover groups of customers based on shopping behavior.</p>
+      </div>
+      <div class="real-example">
+        <div class="example-graphic">
+          <div class="example-circle circle-a"><span>● ● ●</span><b>Group A</b></div>
+          <div class="example-circle circle-b"><span>● ● ●</span><b>Group B</b></div>
+          <div class="example-circle circle-c"><span>● ● ●</span><b>Group C</b></div>
+          <div class="example-center">Customer<br>data</div>
+        </div>
+        <div class="example-copy">
+          <h3>From individual customers to meaningful groups</h3>
+          <ol>
+            <li>Collect data about spending, visits, and purchases.</li>
+            <li>Calculate similarities between customers.</li>
+            <li>Merge similar customers using a linkage method.</li>
+            <li>Cut the dendrogram to identify useful groups.</li>
+          </ol>
+          <div class="example-result">
+            <p><span class="dot dot-blue"></span><strong>Group A:</strong> Frequent shoppers</p>
+            <p><span class="dot dot-purple"></span><strong>Group B:</strong> Occasional shoppers</p>
+            <p><span class="dot dot-orange"></span><strong>Group C:</strong> Budget-focused shoppers</p>
+          </div>
+          <p class="small-note">These are illustrative group labels. Real groups depend on the data and selected features.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section code-section" id="python">
+      <div class="section-heading">
+        <span class="eyebrow">07 — PYTHON IMPLEMENTATION</span>
+        <h2>Write your first program</h2>
+        <p>This example uses SciPy to calculate a linkage matrix and draw a dendrogram.</p>
+      </div>
+      <div class="code-card">
+        <div class="code-header">
+          <div class="window-dots"><i></i><i></i><i></i></div>
+          <span>hierarchical_clustering.py</span>
+          <button id="copyCode">Copy code</button>
+        </div>
+        <pre><code id="pythonCode">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
+
+# Sample data: eight points in two dimensions
+X = np.array([
+    [1, 2], [1.5, 1.8], [2, 1],
+    [5, 8], [6, 8], [5.5, 7],
+    [8, 2], [9, 3]
+])
+
+# Build the hierarchical tree
+Z = linkage(X, method="ward")
+
+# Form three clusters from the hierarchy
+labels = fcluster(Z, t=3, criterion="maxclust")
+
+print("Cluster labels:")
+print(labels)
+print("Number of clusters:", len(np.unique(labels)))
+
+# Display the dendrogram
+plt.figure(figsize=(9, 5))
+dendrogram(Z, labels=[f"P{i+1}" for i in range(len(X))])
+plt.title("Hierarchical Clustering Dendrogram")
+plt.xlabel("Data Points")
+plt.ylabel("Merge Distance")
+plt.tight_layout()
+plt.show()
+
+# Plot the resulting clusters
+plt.figure(figsize=(7, 5))
+for label in np.unique(labels):
+    points = X[labels == label]
+    plt.scatter(points[:, 0], points[:, 1], label=f"Cluster {label}")
+
+plt.title("Hierarchical Clustering Groups")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.legend()
+plt.tight_layout()
+plt.show()</code></pre>
+      </div>
+      <div class="install-card">
+        <div class="install-icon">⌘</div>
+        <div>
+          <strong>Install the required libraries</strong>
+          <p>Run this command in your terminal before executing the program.</p>
+          <code>python -m pip install numpy matplotlib scipy</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="output">
+      <div class="section-heading">
+        <span class="eyebrow">08 — OUTPUT</span>
+        <h2>What will the program display?</h2>
+      </div>
+      <div class="output-grid">
+        <article class="output-card">
+          <span class="output-icon">⌨️</span>
+          <h3>Console output</h3>
+          <p>The program prints the cluster label assigned to each of the eight sample points and the number of clusters found.</p>
+          <div class="output-preview">Cluster labels:<br>[... eight cluster labels ...]<br>Number of clusters: 3</div>
+          <small>The exact labels depend on the clustering result and may use different numeric IDs.</small>
+        </article>
+        <article class="output-card">
+          <span class="output-icon">📈</span>
+          <h3>Graph output</h3>
+          <p>Two graphs appear: a dendrogram showing merge order and distance, followed by a scatter plot with points colored by cluster.</p>
+          <div class="graph-preview"><span>●</span><span>●</span><span>●</span><b>↗</b><span>●</span><span>●</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section soft-section" id="graphs">
+      <div class="section-heading">
+        <span class="eyebrow">09 — READING THE GRAPH</span>
+        <h2>How to interpret a dendrogram</h2>
+        <p>Look at the vertical merge heights to understand which groups are similar and how far apart they are.</p>
+      </div>
+      <div class="reading-grid">
+        <article><span class="reading-mark blue-mark"></span><h3>Low merge height</h3><p>Groups are joined at a small distance, indicating greater similarity under the selected metric and linkage.</p></article>
+        <article><span class="reading-mark purple-mark"></span><h3>High merge height</h3><p>Groups are joined at a larger distance, suggesting they are less similar.</p></article>
+        <article><span class="reading-mark orange-mark"></span><h3>Horizontal cut</h3><p>A horizontal cut through the tree determines the resulting clusters. Cutting at different heights can give different numbers of groups.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="pros-cons">
+      <div class="section-heading">
+        <span class="eyebrow">10 — QUICK REVISION</span>
+        <h2>Advantages and limitations</h2>
+      </div>
+      <div class="pros-cons">
+        <article class="pros">
+          <h3>✓ Advantages</h3>
+          <p>• Shows nested relationships between groups.</p>
+          <p>• A dendrogram helps explore different cluster counts.</p>
+          <p>• Supports multiple linkage methods.</p>
+          <p>• Useful for exploratory data analysis.</p>
+        </article>
+        <article class="cons">
+          <h3>! Limitations</h3>
+          <p>• Can be computationally expensive on large datasets.</p>
+          <p>• Sensitive to distance measures and linkage choices.</p>
+          <p>• Early merges in agglomerative clustering are not normally undone.</p>
+          <p>• Outliers can affect the resulting hierarchy.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="conclusion" id="conclusion">
+      <span class="conclusion-tag">YOUR TAKEAWAY</span>
+      <h2>See the bigger picture in your data.</h2>
+      <p>
+        Hierarchical Clustering is an unsupervised learning method that
+        creates a hierarchy of groups. With linkage methods and dendrograms,
+        we can explore similarities and choose meaningful clusters.
+      </p>
+      <a href="#home" class="primary-btn">Back to top ↑</a>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#home" class="brand"><span class="brand-icon">✳</span> ML Blogs</a>
+    <p>Learn · Build · Grow</p>
+    <small>Educational blog · Hierarchical Clustering</small>
+    <div class="footer-links">
+      <a href="https://linear-regression-blog-pm.netlify.app">Linear Regression</a>
+      <a href="https://logistic-regression-blog-pm.netlify.app">Logistic Regression</a>
+      <a href="https://decision-tree-blog-pm.netlify.app">Decision Tree</a>
+      <a href="https://knn-blog-pm.netlify.app">KNN</a>
+      <a href="https://k-mean-blog-pm.netlify.app">K-Means</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
