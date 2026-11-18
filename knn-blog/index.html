@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn K-Nearest Neighbors with interactive examples, formulas, Python code, and visualizations.">
+  <title>K-Nearest Neighbors | ML Learning Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="#home" class="brand"><span class="brand-icon">✳</span> ML Learning Lab</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <nav id="navLinks">
+      <a href="#intro">Introduction</a>
+      <a href="#understanding">How It Works</a>
+      <a href="#applications">Applications</a>
+      <a href="#python">Python Code</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">MACHINE LEARNING • BEGINNER'S GUIDE</span>
+        <h1>Meet the neighbors.<br>Make a <span>prediction.</span></h1>
+        <p>
+          Discover K-Nearest Neighbors (KNN), a simple Machine Learning
+          algorithm that learns from nearby examples to predict an answer.
+        </p>
+        <div class="hero-actions">
+          <a href="#intro" class="btn primary">Start Learning →</a>
+          <a href="#knn-demo" class="btn secondary">Try KNN</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>01</strong><span>Measure distance</span></div>
+          <div><strong>02</strong><span>Find neighbors</span></div>
+          <div><strong>03</strong><span>Predict a class</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-top"><span>NEIGHBORHOOD VIEW</span><span class="live-pill">● KNN</span></div>
+        <div class="scatter-art">
+          <div class="axis-y">Feature 2</div>
+          <div class="axis-x">Feature 1 →</div>
+          <span class="point blue p1"></span><span class="point blue p2"></span>
+          <span class="point blue p3"></span><span class="point blue p4"></span>
+          <span class="point blue p5"></span><span class="point blue p6"></span>
+          <span class="point orange p7"></span><span class="point orange p8"></span>
+          <span class="point orange p9"></span><span class="point orange p10"></span>
+          <span class="point orange p11"></span><span class="point orange p12"></span>
+          <span class="point new-point"></span>
+          <span class="legend blue-legend">Class A</span>
+          <span class="legend orange-legend">Class B</span>
+          <span class="new-label">New point</span>
+        </div>
+        <div class="visual-caption">A new point is classified by looking at nearby points.</div>
+      </div>
+    </section>
+
+    <div class="page-wrap">
+      <section class="section" id="intro">
+        <div class="section-heading">
+          <span class="eyebrow">01 / INTRODUCTION</span>
+          <h2>What is K-Nearest Neighbors?</h2>
+          <p>K-Nearest Neighbors, or KNN, is a supervised Machine Learning algorithm that uses the closest training examples to predict a class or a numerical value.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon blue">📍</div>
+            <h3>Find Nearby Data</h3>
+            <p>It measures the distance between a new example and existing data points.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon purple">🗳️</div>
+            <h3>Use the Neighbors</h3>
+            <p>For classification, the most common class among the nearest neighbors usually wins.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon green">📈</div>
+            <h3>Two Main Tasks</h3>
+            <p>KNN classification predicts categories; KNN regression predicts numerical values.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="understanding">
+        <div class="section-heading">
+          <span class="eyebrow">02 / UNDERSTANDING</span>
+          <h2>How does KNN work?</h2>
+          <p>Follow these steps to understand how the algorithm makes a prediction.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><span class="step-icon">1</span><h3>Choose K</h3><p>Decide how many nearby data points to consider.</p></article>
+          <article class="step"><span class="step-icon">2</span><h3>Measure Distance</h3><p>Calculate the distance from the new point to training points.</p></article>
+          <article class="step"><span class="step-icon">3</span><h3>Find Neighbors</h3><p>Sort the distances and select the K closest points.</p></article>
+          <article class="step"><span class="step-icon">4</span><h3>Predict</h3><p>Use majority voting for classification or an average for regression.</p></article>
+        </div>
+        <div class="concept-card">
+          <div class="concept-icon">💡</div>
+          <div><h3>What does K mean?</h3><p>If <strong>K = 3</strong>, the algorithm checks the 3 closest neighbors. If two belong to Class A and one belongs to Class B, the predicted class is Class A.</p></div>
+        </div>
+      </section>
+
+      <section class="section demo-section" id="knn-demo">
+        <div class="section-heading">
+          <span class="eyebrow">03 / INTERACTIVE EXAMPLE</span>
+          <h2>Who are the nearest neighbors?</h2>
+          <p>Explore a small dataset. Change K and watch how the predicted class changes.</p>
+        </div>
+        <div class="demo-card">
+          <div class="demo-left">
+            <div class="chart-heading"><strong>Sample data points</strong><span>Distance-based classification</span></div>
+            <canvas id="knnCanvas" aria-label="Interactive scatter plot showing data points, their distances, and the selected nearest neighbors"></canvas>
+            <div class="chart-legend">
+              <span><i class="legend-dot class-a"></i> Class A</span>
+              <span><i class="legend-dot class-b"></i> Class B</span>
+              <span><i class="legend-dot query-dot"></i> New point</span>
+            </div>
+          </div>
+          <div class="demo-right">
+            <label for="kValue">Number of neighbors (K)</label>
+            <div class="k-picker">
+              <button id="kMinus" aria-label="Decrease K">−</button>
+              <strong id="kNumber">3</strong>
+              <button id="kPlus" aria-label="Increase K">+</button>
+            </div>
+            <input id="kSlider" type="range" min="1" max="7" value="3" step="1">
+            <div class="range-labels"><span>K = 1</span><span>K = 7</span></div>
+            <div class="vote-box">
+              <span class="eyebrow">PREDICTED CLASS</span>
+              <h3 id="predictedClass">Class A</h3>
+              <p id="voteExplanation">2 of the 3 nearest neighbors belong to Class A.</p>
+              <div class="vote-bar"><div id="voteBarA"></div><div id="voteBarB"></div></div>
+              <div class="vote-labels"><span id="countA">Class A: 2</span><span id="countB">Class B: 1</span></div>
+            </div>
+            <p class="note">The ring around the new point highlights its selected nearest neighbors. This is a teaching dataset, not a trained real-world model.</p>
+            <button class="btn secondary reset-btn" id="resetK">Reset to K = 3 ↺</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="formula">
+        <div class="section-heading">
+          <span class="eyebrow">04 / FORMULA</span>
+          <h2>How is distance calculated?</h2>
+          <p>KNN commonly uses Euclidean distance to measure how far apart two data points are.</p>
+        </div>
+        <div class="formula-card">
+          <span class="formula-label">EUCLIDEAN DISTANCE</span>
+          <div class="formula">d(x, y) = √Σ(xᵢ − yᵢ)²</div>
+          <p>For two points with features (x₁, x₂) and (y₁, y₂):</p>
+          <div class="formula small-formula">d = √[(x₁ − y₁)² + (x₂ − y₂)²]</div>
+          <div class="formula-example"><strong>Example:</strong> Distance between (2, 3) and (5, 7)</div>
+          <div class="calculation">d = √[(5 − 2)² + (7 − 3)²] = √(9 + 16) = √25 = <strong>5</strong></div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-icon">⚖️</div>
+          <div><h3>Why feature scaling matters</h3><p>If one feature is measured in thousands and another in decimals, the larger scale may dominate the distance. Standardization or normalization can help make features comparable.</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="real-life">
+        <div class="section-heading">
+          <span class="eyebrow">05 / REAL-LIFE EXAMPLE</span>
+          <h2>Imagine recommending a movie</h2>
+          <p>A recommendation system could compare users based on their preferences and find people with similar interests.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-visual">
+            <div class="movie-icon">🎬</div>
+            <div class="movie-stars">★★★★★</div>
+            <span>YOUR MOVIE TASTE</span>
+          </div>
+          <div class="story-steps">
+            <div><span>01</span><p><strong>Find similar users</strong><br>Compare ratings or preference features.</p></div>
+            <div><span>02</span><p><strong>Look at their favorites</strong><br>Find movies liked by nearby users.</p></div>
+            <div><span>03</span><p><strong>Recommend a movie</strong><br>Suggest an option based on the neighbors' preferences.</p></div>
+          </div>
+        </div>
+        <p class="note">This is a simplified illustration. Real recommendation systems may use additional algorithms, data, and constraints.</p>
+      </section>
+
+      <section class="section" id="applications">
+        <div class="section-heading">
+          <span class="eyebrow">06 / APPLICATIONS</span>
+          <h2>Where is KNN used?</h2>
+          <p>KNN is useful when similarity between data points helps solve a problem.</p>
+        </div>
+        <div class="application-grid">
+          <article class="application-card"><span>🩺</span><h3>Healthcare Research</h3><p>Classify patterns in patient data to support research and clinical workflows.</p><small>HEALTHCARE</small></article>
+          <article class="application-card"><span>🖼️</span><h3>Image Recognition</h3><p>Classify images using features or embeddings from similar examples.</p><small>COMPUTER VISION</small></article>
+          <article class="application-card"><span>🎬</span><h3>Recommendations</h3><p>Find similar users or items to help suggest relevant content.</p><small>ENTERTAINMENT</small></article>
+          <article class="application-card"><span>💳</span><h3>Finance</h3><p>Identify transactions or records with patterns similar to known examples.</p><small>FINANCE</small></article>
+          <article class="application-card"><span>🌿</span><h3>Plant Classification</h3><p>Classify plant species using measurements such as petal length and width.</p><small>AGRICULTURE</small></article>
+          <article class="application-card"><span>📊</span><h3>Data Analysis</h3><p>Estimate numerical values or discover similar records in a dataset.</p><small>ANALYTICS</small></article>
+        </div>
+      </section>
+
+      <section class="section" id="python">
+        <div class="section-heading">
+          <span class="eyebrow">07 / PYTHON CODE</span>
+          <h2>Build a KNN model in Python</h2>
+          <p>This example uses the Iris dataset to classify a flower using its measurements.</p>
+        </div>
+        <div class="code-card">
+          <div class="code-header"><div><span class="live-dot"></span><strong>knn_classifier.py</strong></div><button class="copy-button" data-copy="pythonCode">Copy code ⧉</button></div>
+          <pre><code id="pythonCode">from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import make_pipeline
+from sklearn.metrics import accuracy_score
+
+# Load the Iris flower dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42,
+    stratify=y
+)
+
+# Scale features and train the KNN model
+model = make_pipeline(
+    StandardScaler(),
+    KNeighborsClassifier(n_neighbors=3)
+)
+model.fit(X_train, y_train)
+
+# Evaluate the model on unseen test data
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+
+# Predict the class of a new flower
+new_flower = [[5.1, 3.5, 1.4, 0.2]]
+prediction = model.predict(new_flower)[0]
+
+print("Predicted flower:", iris.target_names[prediction])
+print("Test accuracy:", round(accuracy, 2))</code></pre>
+          <div class="code-footer"><span>PYTHON 3</span><span>Scikit-learn • Iris dataset</span></div>
+        </div>
+        <div class="output-grid">
+          <div class="output-card">
+            <span class="eyebrow">SAMPLE OUTPUT</span>
+            <pre>Predicted flower: setosa
+Test accuracy: (calculated when run)</pre>
+            <p class="note">The exact test accuracy is calculated from the test split when you run the code. It may vary with the dataset and settings.</p>
+          </div>
+          <div class="output-card">
+            <span class="eyebrow">WHAT THE MODEL DOES</span>
+            <div class="result-list">
+              <div><span>01</span><p><strong>Loads Iris data</strong><br>Flower measurements and species labels.</p></div>
+              <div><span>02</span><p><strong>Scales features</strong><br>Makes measurement scales more comparable.</p></div>
+              <div><span>03</span><p><strong>Uses K = 3</strong><br>Checks the three closest training examples.</p></div>
+              <div><span>04</span><p><strong>Evaluates</strong><br>Measures accuracy on held-out test data.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="install-note"><span>⌘</span><div><strong>Install the required library</strong><p>Run this command in CMD or the VS Code terminal:</p><code>python -m pip install scikit-learn</code></div><button class="copy-button" data-copy="installCommand">Copy</button><span id="installCommand" class="hidden">python -m pip install scikit-learn</span></div>
+      </section>
+
+      <section class="section" id="pros-cons">
+        <div class="section-heading">
+          <span class="eyebrow">08 / QUICK REVIEW</span>
+          <h2>Advantages and limitations</h2>
+        </div>
+        <div class="pros-cons">
+          <div class="pros"><h3>✓ Advantages</h3><ul><li>Easy to understand</li><li>Simple to implement</li><li>Can model complex class boundaries</li><li>Useful for classification and regression</li></ul></div>
+          <div class="cons"><h3>! Limitations</h3><ul><li>Prediction can be slow on large datasets</li><li>Sensitive to feature scales</li><li>Choice of K affects results</li><li>Can struggle with many irrelevant features</li></ul></div>
+        </div>
+      </section>
+
+      <section class="section quiz-section" id="quiz">
+        <div class="quiz-card">
+          <span class="eyebrow">09 / TEST YOURSELF</span>
+          <h2>Quick knowledge check</h2>
+          <p>In KNN classification, how is a new data point usually assigned a class?</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-answer="wrong">By choosing a random class</button>
+            <button class="quiz-option" data-answer="correct">By majority vote of nearest neighbors</button>
+            <button class="quiz-option" data-answer="wrong">By calculating the mean of all features</button>
+            <button class="quiz-option" data-answer="wrong">By building a decision tree</button>
+          </div>
+          <div id="quizFeedback" class="quiz-feedback" aria-live="polite"></div>
+          <button class="btn secondary" id="quizReset">Try again ↺</button>
+        </div>
+      </section>
+
+      <section class="conclusion">
+        <div class="conclusion-mark">✳</div>
+        <span class="eyebrow">10 / CONCLUSION</span>
+        <h2>Closer examples.<br><span>Smarter predictions.</span></h2>
+        <p>KNN predicts using nearby examples and a distance measure. Choosing a suitable K and scaling features appropriately can improve its performance.</p>
+        <a href="#home" class="btn primary">Back to top ↑</a>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <a href="#home" class="brand"><span class="brand-icon">✳</span> ML Learning Lab</a>
+    <p>Learn Machine Learning, one concept at a time.</p>
+    <span>K-NEAREST NEIGHBORS • STUDY NOTES</span>
+  </footer>
+  <div class="toast" id="toast" role="status">Copied!</div>
+  <script src="script.js"></script>
+</body>
+</html>
