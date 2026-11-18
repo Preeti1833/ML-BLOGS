@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A beginner-friendly interactive guide to Decision Tree Machine Learning." />
+  <title>Decision Tree | ML Learning Lab</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <a href="#home" class="brand"><span class="brand-icon">✳</span> ML Learning Lab</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav id="navLinks">
+      <a href="#intro">Introduction</a>
+      <a href="#understanding">How It Works</a>
+      <a href="#applications">Applications</a>
+      <a href="#python">Python Code</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">MACHINE LEARNING • BEGINNER'S GUIDE</span>
+        <h1>Understand the world<br />through <span>Decision Trees.</span></h1>
+        <p>
+          Learn how machines make decisions by asking questions, following
+          branches, and reaching an answer—one step at a time.
+        </p>
+        <div class="hero-actions">
+          <a href="#intro" class="btn primary">Start Learning <span>→</span></a>
+          <a href="#tree-demo" class="btn secondary">Explore the Tree</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>01</strong><span>Easy concept</span></div>
+          <div><strong>02</strong><span>Visual learning</span></div>
+          <div><strong>03</strong><span>Python example</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-label">A simple decision journey</div>
+        <div class="tree-illustration">
+          <div class="tree-node root">Study 3+ hours?</div>
+          <div class="tree-branches">
+            <div class="tree-path">
+              <span class="branch-label">YES</span>
+              <div class="tree-node yes-node">PASS ✓</div>
+            </div>
+            <div class="tree-path">
+              <span class="branch-label">NO</span>
+              <div class="tree-node question-node">Attendance 75%+?</div>
+              <div class="sub-branches">
+                <div><span>YES</span><div class="tree-node yes-node">PASS ✓</div></div>
+                <div><span>NO</span><div class="tree-node no-node">REVIEW</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="visual-caption">Question → Branch → Decision</p>
+      </div>
+    </section>
+
+    <div class="page-wrap">
+      <section class="intro-section section" id="intro">
+        <div class="section-heading">
+          <span class="eyebrow">01 / INTRODUCTION</span>
+          <h2>What is a Decision Tree?</h2>
+          <p>A Decision Tree is a supervised Machine Learning algorithm that learns rules from data to predict a class or a numerical value.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon blue">🌱</div>
+            <h3>Simple to Understand</h3>
+            <p>It works like a flowchart and makes predictions by following a series of questions.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon purple">🧠</div>
+            <h3>Learns from Data</h3>
+            <p>It identifies useful features and splitting rules from examples in the training data.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon green">🎯</div>
+            <h3>Two Main Types</h3>
+            <p>Classification predicts categories; regression predicts numerical values.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="understanding">
+        <div class="section-heading">
+          <span class="eyebrow">02 / UNDERSTANDING</span>
+          <h2>Meet the parts of a tree</h2>
+          <p>Every part has a job. Select a component to learn what it does.</p>
+        </div>
+        <div class="parts-layout">
+          <div class="parts-list">
+            <button class="part-button active" data-part="root">
+              <span class="part-number">01</span><span><strong>Root Node</strong><small>The first question</small></span><span>↗</span>
+            </button>
+            <button class="part-button" data-part="branch">
+              <span class="part-number">02</span><span><strong>Branch</strong><small>A possible answer or path</small></span><span>↗</span>
+            </button>
+            <button class="part-button" data-part="leaf">
+              <span class="part-number">03</span><span><strong>Leaf Node</strong><small>The final prediction</small></span><span>↗</span>
+            </button>
+            <button class="part-button" data-part="split">
+              <span class="part-number">04</span><span><strong>Splitting</strong><small>Dividing data into groups</small></span><span>↗</span>
+            </button>
+          </div>
+          <div class="part-detail" aria-live="polite">
+            <div class="detail-symbol" id="partSymbol">◎</div>
+            <span class="eyebrow">TREE COMPONENT</span>
+            <h3 id="partTitle">Root Node</h3>
+            <p id="partDescription">The root node is the starting point of a decision tree. It asks the first question and splits the data into smaller groups.</p>
+            <div class="detail-example"><strong>Example</strong><p id="partExample">“Did the student study for at least 3 hours?”</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="section-heading">
+          <span class="eyebrow">03 / HOW IT IS USED</span>
+          <h2>From data to prediction</h2>
+          <p>The algorithm learns rules during training, then follows those rules to make predictions.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="step-icon">▤</span><span class="step-count">STEP 01</span><h3>Collect Data</h3><p>Gather examples with features and known outcomes.</p></div>
+          <div class="step"><span class="step-icon">⌘</span><span class="step-count">STEP 02</span><h3>Choose Splits</h3><p>Find questions that separate the data into useful groups.</p></div>
+          <div class="step"><span class="step-icon">⑂</span><span class="step-count">STEP 03</span><h3>Build the Tree</h3><p>Repeat splitting until a stopping condition is reached.</p></div>
+          <div class="step"><span class="step-icon">✓</span><span class="step-count">STEP 04</span><h3>Predict</h3><p>Follow the branches to reach a final prediction.</p></div>
+        </div>
+      </section>
+
+      <section class="section demo-section" id="tree-demo">
+        <div class="section-heading">
+          <span class="eyebrow">04 / INTERACTIVE EXAMPLE</span>
+          <h2>Can this student pass?</h2>
+          <p>Change the student's details and follow this simplified example tree to see its decision.</p>
+        </div>
+        <div class="demo-card">
+          <div class="demo-controls">
+            <div class="control-group">
+              <label for="studyHours">Daily study hours</label>
+              <div class="range-line"><input id="studyHours" type="range" min="0" max="6" value="2" step="1" /><strong id="hoursValue">2 hours</strong></div>
+              <div class="range-labels"><span>0 hours</span><span>6 hours</span></div>
+            </div>
+            <div class="control-group">
+              <label for="attendance">Attendance</label>
+              <div class="range-line"><input id="attendance" type="range" min="0" max="100" value="60" step="5" /><strong id="attendanceValue">60%</strong></div>
+              <div class="range-labels"><span>0%</span><span>100%</span></div>
+            </div>
+            <div class="rule-note"><strong>Demo rules</strong><p>3+ study hours → Pass. Otherwise, attendance of 75% or more → Pass. Otherwise → Needs improvement.</p></div>
+          </div>
+          <div class="demo-result">
+            <span class="eyebrow">PREDICTED RESULT</span>
+            <div class="result-icon" id="resultIcon">↗</div>
+            <h3 id="resultTitle">Needs improvement</h3>
+            <p id="resultText">The student studies less than 3 hours and attendance is below 75%.</p>
+            <div class="decision-trail" id="decisionTrail">Study hours: NO → Attendance: NO</div>
+            <button class="btn secondary small-btn" id="resetDemo">Reset example ↺</button>
+          </div>
+        </div>
+        <p class="note">Note: This is a hand-written teaching example that demonstrates decision rules. The Python model below learns its own rules from sample data.</p>
+      </section>
+
+      <section class="section" id="applications">
+        <div class="section-heading">
+          <span class="eyebrow">05 / REAL-WORLD USES</span>
+          <h2>Where are Decision Trees used?</h2>
+          <p>Decision Trees are used when people need predictions that can be explained as a sequence of rules.</p>
+        </div>
+        <div class="application-grid">
+          <article class="application-card"><span>🏦</span><h3>Banking</h3><p>Help assess loan applications using income, credit history, and other information.</p><small>FINANCE</small></article>
+          <article class="application-card"><span>🏥</span><h3>Healthcare</h3><p>Support risk classification using patient information under professional oversight.</p><small>HEALTH</small></article>
+          <article class="application-card"><span>🛍️</span><h3>E-commerce</h3><p>Classify customers or predict whether a shopper may respond to an offer.</p><small>RETAIL</small></article>
+          <article class="application-card"><span>🚗</span><h3>Automobiles</h3><p>Estimate vehicle prices with Decision Tree Regression or classify vehicle types.</p><small>TRANSPORT</small></article>
+          <article class="application-card"><span>🎓</span><h3>Education</h3><p>Explore how attendance and study patterns relate to student outcomes.</p><small>LEARNING</small></article>
+          <article class="application-card"><span>🛡️</span><h3>Cybersecurity</h3><p>Classify network events as potentially normal or suspicious.</p><small>SECURITY</small></article>
+        </div>
+      </section>
+
+      <section class="section formula-section" id="formula">
+        <div class="section-heading">
+          <span class="eyebrow">06 / FORMULAS</span>
+          <h2>How does a tree choose a split?</h2>
+          <p>For classification, common split criteria include Gini impurity and Entropy.</p>
+        </div>
+        <div class="formula-grid">
+          <article class="formula-card">
+            <span class="formula-tag">METHOD 01</span><h3>Gini Impurity</h3>
+            <div class="formula">Gini = 1 − Σ pᵢ²</div>
+            <p>Measures how often a randomly selected sample would be incorrectly classified if labeled according to the class proportions in a node.</p>
+            <div class="formula-foot"><span>Lower is better</span><span>0 = pure node</span></div>
+          </article>
+          <article class="formula-card">
+            <span class="formula-tag">METHOD 02</span><h3>Entropy</h3>
+            <div class="formula">H = −Σ pᵢ log₂(pᵢ)</div>
+            <p>Measures uncertainty in a node. Information gain measures the reduction in entropy after a split.</p>
+            <div class="formula-foot"><span>Lower uncertainty</span><span>0 = pure node</span></div>
+          </article>
+        </div>
+        <div class="formula-note"><strong>What is pᵢ?</strong> It is the proportion of samples belonging to class i in that node. The algorithm compares candidate splits and selects one according to its chosen criterion.</div>
+      </section>
+
+      <section class="section" id="python">
+        <div class="section-heading">
+          <span class="eyebrow">07 / HANDS-ON PYTHON</span>
+          <h2>Build a Decision Tree in Python</h2>
+          <p>This example trains a classifier to predict a simplified student outcome using study hours and attendance.</p>
+        </div>
+        <div class="code-card">
+          <div class="code-header"><div><span class="live-dot"></span><strong>decision_tree.py</strong></div><button class="copy-button" data-copy="pythonCode">Copy code ⧉</button></div>
+          <pre><code id="pythonCode">import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+# Features: [study hours, attendance percentage]
+X = [
+    [1, 50], [1, 70], [1, 80],
+    [2, 60], [2, 80], [2, 90],
+    [3, 50], [3, 60], [3, 80],
+    [4, 50], [4, 70], [4, 80]
+]
+
+# 0 = Needs improvement, 1 = Pass
+y = [
+    0, 0, 1,
+    0, 1, 1,
+    1, 1, 1,
+    1, 1, 1
+]
+
+model = DecisionTreeClassifier(
+    criterion="gini",
+    max_depth=3,
+    random_state=42
+)
+model.fit(X, y)
+
+student = [[2, 80]]
+prediction = model.predict(student)[0]
+
+labels = {0: "Needs improvement", 1: "Pass"}
+print("Predicted result:", labels[prediction])
+print("Training accuracy:", round(model.score(X, y), 2))
+
+# Draw the learned decision tree
+plt.figure(figsize=(12, 6))
+plot_tree(
+    model,
+    feature_names=["Study hours", "Attendance"],
+    class_names=["Needs improvement", "Pass"],
+    filled=True,
+    rounded=True
+)
+plt.title("Decision Tree: Student Outcome")
+plt.tight_layout()
+plt.show()</code></pre>
+          <div class="code-footer"><span>PYTHON 3</span><span>Requires scikit-learn + matplotlib</span></div>
+        </div>
+        <div class="output-grid">
+          <div class="output-card">
+            <span class="eyebrow">SAMPLE OUTPUT</span>
+            <pre id="sampleOutput">Predicted result: Pass
+Training accuracy: 1.0</pre>
+            <p class="note">The accuracy shown is training accuracy on this small, rule-based example—not a measure of performance on unseen students.</p>
+          </div>
+          <div class="output-card graph-card">
+            <span class="eyebrow">TREE VISUALIZATION</span>
+            <div class="mini-tree">
+              <div class="mini-node">Study hours ≤ 2.5?</div>
+              <div class="mini-lines"><span></span><span></span></div>
+              <div class="mini-children"><div><b>YES</b><div class="mini-node">Attendance ≤ 75?</div></div><div><b>NO</b><div class="mini-leaf">PASS ✓</div></div></div>
+              <div class="mini-lines lower"><span></span><span></span></div>
+              <div class="mini-children last"><div><b>YES</b><div class="mini-leaf no">REVIEW</div></div><div><b>NO</b><div class="mini-leaf">PASS ✓</div></div></div>
+            </div>
+            <p class="note">Illustrative tree only. The actual structure is generated by running the Python code.</p>
+          </div>
+        </div>
+        <div class="install-note"><span>⌘</span><div><strong>Before running the code</strong><p>Install the required libraries in your terminal:</p><code>python -m pip install scikit-learn matplotlib</code></div><button class="copy-button" data-copy="installCommand">Copy</button><span class="hidden" id="installCommand">python -m pip install scikit-learn matplotlib</span></div>
+      </section>
+
+      <section class="section" id="pros-cons">
+        <div class="section-heading">
+          <span class="eyebrow">08 / QUICK REVIEW</span>
+          <h2>Advantages and limitations</h2>
+        </div>
+        <div class="pros-cons">
+          <div class="pros"><h3>✓ Advantages</h3><ul><li>Easy to understand and visualize</li><li>Can model nonlinear relationships</li><li>Works with classification and regression</li><li>Usually needs little feature scaling</li></ul></div>
+          <div class="cons"><h3>! Limitations</h3><ul><li>Can overfit if the tree becomes too complex</li><li>Small data changes may change the tree</li><li>A single tree may be less accurate than an ensemble</li><li>Biased data can lead to unfair predictions</li></ul></div>
+        </div>
+      </section>
+
+      <section class="section quiz-section" id="quiz">
+        <div class="quiz-card">
+          <span class="eyebrow">09 / TEST YOURSELF</span>
+          <h2>Quick knowledge check</h2>
+          <p>Which part of a Decision Tree gives the final prediction?</p>
+          <div class="quiz-options">
+            <button class="quiz-option" data-answer="wrong">Root node</button>
+            <button class="quiz-option" data-answer="wrong">Branch</button>
+            <button class="quiz-option" data-answer="correct">Leaf node</button>
+            <button class="quiz-option" data-answer="wrong">Training dataset</button>
+          </div>
+          <div id="quizFeedback" class="quiz-feedback" aria-live="polite"></div>
+          <button class="btn secondary" id="quizReset">Try again ↺</button>
+        </div>
+      </section>
+
+      <section class="conclusion">
+        <div class="conclusion-mark">✳</div>
+        <span class="eyebrow">10 / CONCLUSION</span>
+        <h2>Small questions.<br /><span>Smarter decisions.</span></h2>
+        <p>Decision Trees turn patterns in data into understandable rules. They are useful for classification and regression, but their depth should be controlled to reduce overfitting.</p>
+        <a class="btn primary" href="#home">Back to top ↑</a>
+      </section>
+    </div>
+  </main>
+
+  <footer><a href="#home" class="brand"><span class="brand-icon">✳</span> ML Learning Lab</a><p>Learn Machine Learning, one concept at a time.</p><span>DECISION TREE • STUDY NOTES</span></footer>
+  <div id="toast" class="toast" role="status">Copied!</div>
+  <script src="script.js"></script>
+</body>
+</html>
