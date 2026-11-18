@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A beginner-friendly guide to Linear Regression with formulas, Python code, examples and graphs.">
+  <title>LinearLearn | Linear Regression Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#home" class="logo">Linear<span>Learn</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav id="navigation">
+      <a href="#home">Home</a>
+      <a href="#learn">Learn</a>
+      <a href="#formula">Formula</a>
+      <a href="#example">Example</a>
+      <a href="#python">Python</a>
+      <a href="#graph">Graph</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="tag">MACHINE LEARNING • BEGINNER GUIDE</span>
+        <h1>Understand <span>Linear Regression</span> the Easy Way</h1>
+        <p>
+          Discover how machines learn relationships between variables
+          and predict numerical values using a simple straight line.
+        </p>
+        <div class="hero-buttons">
+          <a href="#learn" class="btn primary">Start Learning →</a>
+          <a href="#python" class="btn secondary">Explore Python Code</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>01</strong><small>Core Concept</small></div>
+          <div><strong>02</strong><small>Formula & Example</small></div>
+          <div><strong>03</strong><small>Python & Graph</small></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="chart-card">
+          <span class="chart-label">Study Hours vs Marks</span>
+          <div class="mini-chart">
+            <div class="chart-line"></div>
+            <span class="dot d1"></span>
+            <span class="dot d2"></span>
+            <span class="dot d3"></span>
+            <span class="dot d4"></span>
+            <span class="dot d5"></span>
+          </div>
+          <div class="chart-legend">
+            <span>● Data points</span>
+            <span>— Best-fit line</span>
+          </div>
+          <div class="formula-mini">ŷ = b₀ + b₁x</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="learn">
+      <div class="section-heading">
+        <span class="tag">01 — THE BASICS</span>
+        <h2>What is Linear Regression?</h2>
+        <p>Let's understand the concept from the beginning.</p>
+      </div>
+      <div class="info-card">
+        <p>
+          <strong>Linear Regression</strong> is a supervised machine learning
+          algorithm used to predict numerical values by learning the
+          relationship between variables.
+        </p>
+        <p>
+          It finds a best-fit straight line through data points. This line
+          helps us estimate an output for a new input.
+        </p>
+        <div class="highlight">
+          <strong>Simple example:</strong> Predicting a student's marks
+          using the number of hours they study.
+        </div>
+      </div>
+
+      <h3 class="subheading">How does it work?</h3>
+      <div class="steps-grid">
+        <article class="step-card">
+          <span class="step-number">01</span>
+          <h3>Collect Data</h3>
+          <p>Collect information such as study hours and student marks.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">02</span>
+          <h3>Train the Model</h3>
+          <p>The algorithm learns the relationship between input and output.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">03</span>
+          <h3>Find the Line</h3>
+          <p>It finds a line that minimizes the squared prediction errors.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">04</span>
+          <h3>Make Predictions</h3>
+          <p>Use the learned line to estimate a new numerical value.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section alternate" id="applications">
+      <div class="section-heading">
+        <span class="tag">02 — REAL-WORLD USE</span>
+        <h2>Where is it used?</h2>
+        <p>Linear Regression can help solve many real-world problems.</p>
+      </div>
+      <div class="applications-grid">
+        <article class="app-card">
+          <div class="app-icon">🎓</div>
+          <h3>Education</h3>
+          <p>Estimate marks based on study hours and other relevant factors.</p>
+        </article>
+        <article class="app-card">
+          <div class="app-icon">🏠</div>
+          <h3>Real Estate</h3>
+          <p>Estimate house prices using property size and other features.</p>
+        </article>
+        <article class="app-card">
+          <div class="app-icon">📈</div>
+          <h3>Business</h3>
+          <p>Estimate sales based on advertising expenditure.</p>
+        </article>
+        <article class="app-card">
+          <div class="app-icon">🚗</div>
+          <h3>Automobiles</h3>
+          <p>Estimate vehicle prices using age, mileage and other features.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="formula">
+      <div class="section-heading">
+        <span class="tag">03 — MATHEMATICS</span>
+        <h2>Understand the Formula</h2>
+        <p>A simple equation is the foundation of Linear Regression.</p>
+      </div>
+      <div class="formula-card">
+        <div class="big-formula">ŷ = b₀ + b₁x</div>
+        <div class="formula-details">
+          <p><strong>ŷ</strong> — Predicted output</p>
+          <p><strong>x</strong> — Input variable</p>
+          <p><strong>b₀</strong> — Intercept</p>
+          <p><strong>b₁</strong> — Slope of the line</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>Types of Linear Regression</h3>
+        <p><strong>Simple Linear Regression:</strong> Uses one input variable to predict an output.</p>
+        <p><strong>Multiple Linear Regression:</strong> Uses two or more input variables to predict an output.</p>
+      </div>
+    </section>
+
+    <section class="section alternate" id="example">
+      <div class="section-heading">
+        <span class="tag">04 — LEARN BY EXAMPLE</span>
+        <h2>Study Hours and Student Marks</h2>
+        <p>Suppose a simplified dataset follows a straight-line pattern.</p>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Study Hours (X)</th><th>Marks (Y)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>30</td></tr>
+            <tr><td>2</td><td>40</td></tr>
+            <tr><td>3</td><td>50</td></tr>
+            <tr><td>4</td><td>60</td></tr>
+            <tr><td>5</td><td>70</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="example-box">
+        <h3>Let's calculate a prediction</h3>
+        <p>For this dataset, the learned equation is:</p>
+        <div class="big-formula">Marks = 20 + 10 × Study Hours</div>
+        <p>If a student studies for 6 hours:</p>
+        <div class="calculation">Marks = 20 + 10 × 6 = 80</div>
+        <p class="success-text">Predicted marks: 80</p>
+        <p class="small-note">This is a simplified example. Real marks depend on many factors.</p>
+      </div>
+    </section>
+
+    <section class="section" id="python">
+      <div class="section-heading">
+        <span class="tag">05 — PRACTICAL LEARNING</span>
+        <h2>Implement it using Python</h2>
+        <p>Train a model and predict marks for six study hours.</p>
+      </div>
+      <div class="code-card">
+        <div class="code-header">
+          <div class="code-title"><span class="language-dot"></span> Python · linear_regression.py</div>
+          <button class="copy-btn" id="copyCode">Copy Code</button>
+        </div>
+        <pre><code id="pythonCode">import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Input: Study hours
+X = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
+
+# Output: Student marks
+y = np.array([30, 40, 50, 60, 70])
+
+# Create and train the model
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict marks for 6 study hours
+prediction = model.predict([[6]])
+
+print("Slope:", model.coef_[0])
+print("Intercept:", model.intercept_)
+print("Predicted marks:", prediction[0])</code></pre>
+      </div>
+      <div class="info-card">
+        <h3>How to run the code</h3>
+        <p>1. Install Python on your computer.</p>
+        <p>2. Open your terminal and run:</p>
+        <div class="inline-code">pip install numpy scikit-learn</div>
+        <p>3. Save the program as <strong>linear_regression.py</strong>.</p>
+        <p>4. Run <strong>python linear_regression.py</strong>.</p>
+      </div>
+      <div class="output-card">
+        <div class="output-heading"><span>●</span> Expected Output</div>
+        <pre id="pythonOutput">Slope: 10.0
+Intercept: 20.0
+Predicted marks: 80.0</pre>
+        <button class="copy-btn light-copy" id="copyOutput">Copy Output</button>
+      </div>
+    </section>
+
+    <section class="section alternate" id="graph">
+      <div class="section-heading">
+        <span class="tag">06 — VISUAL LEARNING</span>
+        <h2>Visualize the Regression Line</h2>
+        <p>See how study hours relate to predicted marks.</p>
+      </div>
+      <div class="graph-card">
+        <div class="graph-heading">
+          <div>
+            <h3>Study Hours vs Marks</h3>
+            <p>Actual data and the best-fit line</p>
+          </div>
+          <span class="graph-badge">Linear Model</span>
+        </div>
+        <canvas id="regressionChart" role="img"
+          aria-label="Graph of study hours and marks with a straight regression line"></canvas>
+        <div class="chart-legend">
+          <span><i class="legend-dot"></i> Actual data</span>
+          <span><i class="legend-line"></i> Regression line</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>How to read the graph</h3>
+        <p><strong>X-axis:</strong> Number of study hours.</p>
+        <p><strong>Y-axis:</strong> Student marks.</p>
+        <p><strong>Blue dots:</strong> Actual data points.</p>
+        <p><strong>Red line:</strong> The model's predicted relationship.</p>
+      </div>
+    </section>
+
+    <section class="section" id="summary">
+      <div class="section-heading">
+        <span class="tag">07 — QUICK REVISION</span>
+        <h2>Advantages and Limitations</h2>
+      </div>
+      <div class="two-column">
+        <article class="info-card">
+          <h3 class="green-heading">✓ Advantages</h3>
+          <ul>
+            <li>Easy to understand</li>
+            <li>Simple to implement</li>
+            <li>Fast for small datasets</li>
+            <li>Helps explain relationships</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3 class="orange-heading">! Limitations</h3>
+          <ul>
+            <li>Assumes a linear relationship</li>
+            <li>Sensitive to outliers</li>
+            <li>May miss complex patterns</li>
+            <li>Predictions are not always accurate</li>
+          </ul>
+        </article>
+      </div>
+      <div class="quiz-card">
+        <span class="tag">TEST YOURSELF</span>
+        <h3>What does Linear Regression predict?</h3>
+        <p>Choose your answer below.</p>
+        <div class="quiz-options">
+          <button class="quiz-option" data-answer="wrong">A. Categories such as Yes or No</button>
+          <button class="quiz-option" data-answer="correct">B. Numerical values such as marks or prices</button>
+          <button class="quiz-option" data-answer="wrong">C. Only images</button>
+        </div>
+        <p id="quizFeedback" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="conclusion">
+      <span class="tag">CONCLUSION</span>
+      <h2>Learn the pattern. Predict the future.</h2>
+      <p>
+        Linear Regression is an important starting point in machine learning.
+        It uses data to learn a relationship between variables and estimate
+        numerical values. Understanding its formula, code and graph builds
+        a strong foundation for learning other algorithms.
+      </p>
+      <a href="#home" class="btn primary">Back to Top ↑</a>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#home" class="logo">Linear<span>Learn</span></a>
+    <p>Made for learning Machine Learning, one concept at a time.</p>
+    <p class="copyright">© <span id="year"></span> LinearLearn · College Learning Project</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
