@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>K-Means Clustering | ML Blog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <a href="#" class="logo">ML<span>Learn.</span></a>
+    <nav>
+      <a href="#intro">Introduction</a>
+      <a href="#understanding">How It Works</a>
+      <a href="#example">Example</a>
+      <a href="#python">Python</a>
+      <a href="#conclusion">Conclusion</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="intro">
+      <div class="hero-content">
+        <span class="tag">MACHINE LEARNING · UNSUPERVISED</span>
+        <h1>Discover Patterns with <span>K-Means Clustering</span></h1>
+        <p>
+          Learn how machines group similar data points together without
+          being told the correct answers.
+        </p>
+        <a href="#understanding" class="primary-btn">Explore K-Means →</a>
+      </div>
+      <div class="hero-visual">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
+        <div class="hero-symbol">K</div>
+        <span class="float-label label-one">Cluster 1</span>
+        <span class="float-label label-two">Cluster 2</span>
+        <span class="float-label label-three">Cluster 3</span>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div><strong>Unsupervised</strong><span>Learning Type</span></div>
+      <div><strong>Grouping</strong><span>Main Purpose</span></div>
+      <div><strong>Centroids</strong><span>Cluster Centers</span></div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="section-heading">
+        <span class="eyebrow">01 — THE BASICS</span>
+        <h2>How is K-Means used?</h2>
+        <p>
+          K-Means is an unsupervised machine learning algorithm that divides
+          data into K groups based on similarity. Each group is called a
+          cluster, and its center is called a centroid.
+        </p>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="card-icon">🎯</div>
+          <h3>Find Similar Data</h3>
+          <p>Groups data points that have similar features or values.</p>
+        </article>
+        <article class="info-card">
+          <div class="card-icon">📍</div>
+          <h3>Find Cluster Centers</h3>
+          <p>Calculates a centroid representing the center of each group.</p>
+        </article>
+        <article class="info-card">
+          <div class="card-icon">🔄</div>
+          <h3>Improve Groups</h3>
+          <p>Repeatedly assigns points and updates centroids until the
+             clusters stabilize or a stopping condition is reached.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section tinted" id="where">
+      <div class="section-heading">
+        <span class="eyebrow">02 — REAL-WORLD USES</span>
+        <h2>Where is K-Means used?</h2>
+        <p>K-Means helps discover groups in many types of data.</p>
+      </div>
+
+      <div class="use-grid">
+        <article class="use-card"><span>🛍️</span><div>
+          <h3>Customer Segmentation</h3>
+          <p>Groups customers by shopping habits and spending patterns.</p>
+        </div></article>
+        <article class="use-card"><span>🖼️</span><div>
+          <h3>Image Compression</h3>
+          <p>Groups similar colors to reduce the number of colors in an image.</p>
+        </div></article>
+        <article class="use-card"><span>🏙️</span><div>
+          <h3>City Planning</h3>
+          <p>Groups locations with similar population or service needs.</p>
+        </div></article>
+        <article class="use-card"><span>📊</span><div>
+          <h3>Data Analysis</h3>
+          <p>Finds natural groupings in large datasets.</p>
+        </div></article>
+      </div>
+    </section>
+
+    <section class="section" id="understanding">
+      <div class="section-heading">
+        <span class="eyebrow">03 — UNDERSTANDING THE ALGORITHM</span>
+        <h2>How does K-Means work?</h2>
+        <p>Imagine sorting a mixed collection of objects into groups.
+           K-Means follows these four main steps.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step"><span>01</span><div>
+          <h3>Choose K</h3>
+          <p>Decide how many clusters you want to create.</p>
+        </div></article>
+        <article class="step"><span>02</span><div>
+          <h3>Initialize Centroids</h3>
+          <p>Select initial centers for the clusters.</p>
+        </div></article>
+        <article class="step"><span>03</span><div>
+          <h3>Assign and Update</h3>
+          <p>Assign each point to the nearest center, then recalculate
+             each center using the mean of its assigned points.</p>
+        </div></article>
+        <article class="step"><span>04</span><div>
+          <h3>Repeat</h3>
+          <p>Repeat assignment and updating until the centers stabilize
+             or the stopping condition is reached.</p>
+        </div></article>
+      </div>
+    </section>
+
+    <section class="section formula-section">
+      <div class="section-heading">
+        <span class="eyebrow">04 — THE MATHEMATICS</span>
+        <h2>K-Means formula</h2>
+        <p>The algorithm minimizes the total squared distance between
+           each data point and its assigned centroid.</p>
+      </div>
+
+      <div class="formula-box">
+        <div class="formula">
+          J = ∑<sub>i=1</sub><sup>N</sup> ||x<sub>i</sub> − μ<sub>c(i)</sub>||²
+        </div>
+        <p><strong>Where:</strong></p>
+        <ul>
+          <li><b>xᵢ</b> = a data point</li>
+          <li><b>μ<sub>c(i)</sub></b> = centroid of the assigned cluster</li>
+          <li><b>N</b> = total number of data points</li>
+          <li><b>J</b> = total within-cluster squared distance</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section tinted" id="example">
+      <div class="section-heading">
+        <span class="eyebrow">05 — TRY IT YOURSELF</span>
+        <h2>Explore clustering interactively</h2>
+        <p>Change K and observe how the sample data points are grouped.
+           The plus symbols mark the calculated cluster centers.</p>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-controls">
+          <div>
+            <label for="kRange">Number of clusters (K)</label>
+            <p class="muted">Move the slider to experiment.</p>
+          </div>
+          <div class="k-value" id="kValue">3</div>
+        </div>
+
+        <input type="range" id="kRange" min="1" max="5" value="3" />
+        <div class="range-labels"><span>1 cluster</span><span>5 clusters</span></div>
+
+        <div class="chart-wrap">
+          <canvas id="clusterCanvas" aria-label="Interactive K-Means clustering graph"></canvas>
+        </div>
+        <div class="legend" id="legend"></div>
+        <p class="demo-note" id="demoNote" aria-live="polite"></p>
+        <button class="secondary-btn" id="resetBtn">Reset demonstration ↻</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span class="eyebrow">06 — REAL-LIFE EXAMPLE</span>
+        <h2>Grouping customers in a shop</h2>
+        <p>A shop wants to understand its customers using annual spending
+           and shopping frequency.</p>
+      </div>
+
+      <div class="example-grid">
+        <div class="example-illustration">
+          <div class="customer-icon">🛒</div>
+          <div class="mini-pill">Customer data</div>
+          <div class="mini-pill">Spending + visits</div>
+        </div>
+        <div class="example-text">
+          <h3>What can K-Means discover?</h3>
+          <ol>
+            <li>Collect customer spending and visit data.</li>
+            <li>Choose K = 3 for three possible customer groups.</li>
+            <li>Run K-Means to group customers with similar behavior.</li>
+          </ol>
+          <div class="result-list">
+            <p>🔵 <strong>Group 1:</strong> Low-spending customers</p>
+            <p>🟣 <strong>Group 2:</strong> Occasional shoppers</p>
+            <p>🟢 <strong>Group 3:</strong> Frequent, high-spending shoppers</p>
+          </div>
+          <p class="muted">These are illustrative labels; real clusters depend on the data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section code-section" id="python">
+      <div class="section-heading">
+        <span class="eyebrow">07 — HANDS-ON PYTHON</span>
+        <h2>Implement K-Means in Python</h2>
+        <p>This example creates sample data, forms three clusters, and plots
+           the points with their centroids.</p>
+      </div>
+
+      <div class="code-card">
+        <div class="code-top">
+          <div class="window-dots"><i></i><i></i><i></i></div>
+          <span>kmeans_example.py</span>
+          <button id="copyBtn">Copy code</button>
+        </div>
+        <pre><code id="pythonCode">import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+
+# Create sample data with three groups
+X, y = make_blobs(
+    n_samples=150,
+    centers=3,
+    cluster_std=0.8,
+    random_state=42
+)
+
+# Create and train the K-Means model
+model = KMeans(
+    n_clusters=3,
+    random_state=42,
+    n_init=10
+)
+model.fit(X)
+
+# Get cluster labels and centroids
+labels = model.labels_
+centers = model.cluster_centers_
+
+print("First 10 cluster labels:")
+print(labels[:10])
+print("Cluster centers:")
+print(centers)
+print("Inertia:", round(model.inertia_, 2))
+
+# Plot the clusters
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap="viridis")
+plt.scatter(
+    centers[:, 0], centers[:, 1],
+    marker="X", s=250, c="red", label="Centroids"
+)
+plt.title("K-Means Clustering")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.legend()
+plt.show()</code></pre>
+      </div>
+      <div class="install-note">
+        <strong>Before running:</strong>
+        <code>python -m pip install scikit-learn matplotlib</code>
+      </div>
+    </section>
+
+    <section class="section" id="output">
+      <div class="section-heading">
+        <span class="eyebrow">08 — EXPECTED OUTPUT</span>
+        <h2>What will you see?</h2>
+      </div>
+      <div class="output-grid">
+        <div class="output-card">
+          <span class="output-icon">⌨️</span>
+          <h3>Console output</h3>
+          <p>The program prints the first 10 cluster labels, three centroid
+             coordinates, and the inertia value.</p>
+          <p class="muted">Exact numerical values are generated when you run the code.</p>
+        </div>
+        <div class="output-card">
+          <span class="output-icon">📈</span>
+          <h3>Graph output</h3>
+          <p>A scatter plot displays three groups in different colors.
+             Red X markers indicate the cluster centroids.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tinted" id="graphs">
+      <div class="section-heading">
+        <span class="eyebrow">09 — VISUAL INSIGHT</span>
+        <h2>Understanding the graph</h2>
+        <p>Each dot represents a data point. Dots assigned to the same
+           cluster share a color, and each X represents a centroid.</p>
+      </div>
+      <div class="graph-explain">
+        <div class="graph-symbol">● ● ● <span>×</span></div>
+        <div><h3>Closer points, similar group</h3>
+          <p>K-Means assigns points to their nearest centroid using distance.
+             The clusters may change as centroids move during training.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <span class="eyebrow">10 — QUICK REVISION</span>
+        <h2>Advantages and limitations</h2>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h3>✓ Advantages</h3>
+          <p>Simple to understand and implement.</p>
+          <p>Efficient for many datasets.</p>
+          <p>Useful for discovering groups in unlabeled data.</p>
+        </div>
+        <div class="cons">
+          <h3>! Limitations</h3>
+          <p>You must choose K in advance.</p>
+          <p>Results can depend on initial centroids.</p>
+          <p>Outliers and irregularly shaped groups can cause problems.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="conclusion" id="conclusion">
+      <span class="eyebrow">YOUR TAKEAWAY</span>
+      <h2>Turn data into meaningful groups.</h2>
+      <p>K-Means is a useful unsupervised learning algorithm that groups
+         similar data points by repeatedly assigning them to centroids
+         and updating those centers.</p>
+      <a href="#intro" class="primary-btn">Back to top ↑</a>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#" class="logo">ML<span>Learn.</span></a>
+    <p>Learn Machine Learning, one concept at a time.</p>
+    <small>Educational blog · K-Means Clustering</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
