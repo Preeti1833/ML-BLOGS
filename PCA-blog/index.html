@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principal Component Analysis | ML Learn</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="brand" href="#top"><span class="brand-icon">✦</span> ML Learn</a>
+    <div class="nav-links">
+      <a href="#intro">Intro</a>
+      <a href="#how">How it works</a>
+      <a href="#formula">Formula</a>
+      <a href="#python">Python</a>
+      <a href="#demo">Interactive Demo</a>
+    </div>
+    <a class="nav-pill" href="#demo">Explore PCA ↗</a>
+  </nav>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">DIMENSIONALITY REDUCTION</span>
+        <h1>Principal Component<br><span>Analysis (PCA)</span></h1>
+        <p class="hero-lead">Simplify your data — keep what matters.</p>
+        <p class="hero-desc">
+          PCA transforms many related features into fewer new features
+          while preserving as much important variation in the data as possible.
+        </p>
+        <div class="hero-tags">
+          <span>✓ Reduce dimensions</span>
+          <span>✓ Preserve information</span>
+          <span>✓ Visualize complex data</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="chart-card">
+          <div class="chart-title">Original Data</div>
+          <canvas id="heroOriginal"></canvas>
+          <div class="chart-caption">Multiple features</div>
+        </div>
+        <div class="chart-arrow">→</div>
+        <div class="chart-card">
+          <div class="chart-title">After PCA</div>
+          <canvas id="heroReduced"></canvas>
+          <div class="chart-caption">Reduced dimensions</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefit-row">
+      <article class="benefit">
+        <span class="benefit-icon purple">◈</span>
+        <div>
+          <b>Unsupervised Learning</b>
+          <p>Find patterns without target labels.</p>
+        </div>
+      </article>
+
+      <article class="benefit">
+        <span class="benefit-icon blue">▦</span>
+        <div>
+          <b>Feature Transformation</b>
+          <p>Create new principal components.</p>
+        </div>
+      </article>
+
+      <article class="benefit">
+        <span class="benefit-icon green">↗</span>
+        <div>
+          <b>Widely Used</b>
+          <p>Visualization, compression and noise reduction.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="content-grid">
+
+      <article class="panel" id="intro">
+        <span class="section-kicker">01 — INTRODUCTION</span>
+        <h2>What is PCA?</h2>
+        <p>
+          Principal Component Analysis is a statistical technique used to
+          reduce the number of variables in a dataset. It creates new features
+          called <b>principal components</b>, ordered by how much variance
+          they explain.
+        </p>
+
+        <div class="callout">
+          <b>Think of it this way:</b>
+          Imagine describing a photo with thousands of pixel values.
+          PCA helps represent the main patterns using fewer numbers,
+          making the data easier to analyze.
+        </div>
+
+        <div class="mini-stats">
+          <div><strong>Fewer</strong><span>Features</span></div>
+          <div><strong>Faster</strong><span>Analysis</span></div>
+          <div><strong>Clearer</strong><span>Visuals</span></div>
+        </div>
+      </article>
+
+      <article class="panel" id="how">
+        <span class="section-kicker">02 — HOW IT WORKS</span>
+        <h2>The PCA Workflow</h2>
+        <p>
+          PCA finds directions in which the data varies the most,
+          then projects the data onto the strongest directions.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <span>1</span>
+            <b>Standardize</b>
+            <small>Put features on comparable scales when needed.</small>
+          </div>
+          <div class="step">
+            <span>2</span>
+            <b>Find Variance</b>
+            <small>Calculate covariance or use SVD.</small>
+          </div>
+          <div class="step">
+            <span>3</span>
+            <b>Rank Components</b>
+            <small>Keep directions with the most variance.</small>
+          </div>
+          <div class="step">
+            <span>4</span>
+            <b>Transform</b>
+            <small>Project data into fewer dimensions.</small>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel" id="formula">
+        <span class="section-kicker">03 — THE MATH</span>
+        <h2>PCA Formula</h2>
+        <div class="formula">Z = XW</div>
+        <p class="formula-explain">
+          <b>X</b> = centered or standardized data matrix<br>
+          <b>W</b> = selected principal-component directions<br>
+          <b>Z</b> = transformed data in fewer dimensions
+        </p>
+
+        <div class="callout">
+          <b>Explained Variance Ratio</b><br>
+          It represents the proportion of the dataset's variance captured
+          by a principal component. Adding the ratios of retained components
+          tells us how much variance is preserved.
+        </div>
+      </article>
+
+      <article class="panel code-panel" id="python">
+        <div class="panel-heading">
+          <div>
+            <span class="section-kicker">04 — PYTHON IMPLEMENTATION</span>
+            <h2>PCA Using Scikit-learn</h2>
+          </div>
+          <button class="copy-btn" id="copyCode">Copy Code</button>
+        </div>
+
+        <pre><code id="pythonCode">import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+
+# Load a dataset with 4 numeric features
+iris = load_iris()
+X = iris.data
+
+# Standardize the features
+X_scaled = StandardScaler().fit_transform(X)
+
+# Reduce 4 features to 2 components
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+print("Original shape:", X.shape)
+print("Reduced shape:", X_pca.shape)
+print("Variance explained:",
+      pca.explained_variance_ratio_.round(3))
+print("Total variance kept:",
+      round(pca.explained_variance_ratio_.sum() * 100, 2), "%")
+
+# Plot the transformed data
+plt.scatter(
+    X_pca[:, 0],
+    X_pca[:, 1],
+    c=iris.target,
+    cmap="viridis"
+)
+
+plt.xlabel("Principal Component 1")
+plt.ylabel("Principal Component 2")
+plt.title("Iris Dataset After PCA")
+plt.show()</code></pre>
+
+        <p class="code-note">
+          Tip: Standardization is important when features have different
+          units or scales. PCA centers the data, but does not automatically
+          scale every feature.
+        </p>
+      </article>
+
+      <article class="panel demo-panel" id="demo">
+        <span class="section-kicker">05 — INTERACTIVE DEMO</span>
+        <h2>Explore Dimensionality Reduction</h2>
+        <p>
+          Change the number of principal components and see how the
+          estimated retained variance changes.
+        </p>
+
+        <div class="slider-wrap">
+          <label for="components">
+            Number of Components:
+            <strong id="componentValue">2</strong>
+          </label>
+
+          <input type="range" id="components" min="1" max="4" value="2">
+
+          <div class="range-labels">
+            <span>1 component</span>
+            <span>4 components</span>
+          </div>
+
+          <div class="variance-box">
+            <span>Estimated variance retained</span>
+            <strong id="varianceValue">95.8%</strong>
+          </div>
+        </div>
+
+        <div class="demo-charts">
+          <div class="demo-chart">
+            <h3>Before PCA — Original Data</h3>
+            <canvas id="beforeChart"></canvas>
+            <p>Original data contains multiple features.</p>
+          </div>
+
+          <div class="demo-chart">
+            <h3>After PCA — <span id="chartComponentCount">2</span> Components</h3>
+            <canvas id="afterChart"></canvas>
+            <p id="afterCaption">Two components make the data easier to visualize.</p>
+          </div>
+        </div>
+
+        <div class="variance-bars" id="varianceBars"></div>
+        <p class="small-note">
+          The charts are illustrative. The slider demonstrates the idea;
+          actual variance values depend on your dataset.
+        </p>
+      </article>
+
+      <article class="panel" id="applications">
+        <span class="section-kicker">06 — WHERE IT IS USED</span>
+        <h2>Real-World Applications</h2>
+
+        <div class="application-list">
+          <div>
+            <span>🖼️</span>
+            <div>
+              <b>Image Compression</b>
+              <p>Represent image patterns with fewer values.</p>
+            </div>
+          </div>
+
+          <div>
+            <span>🧬</span>
+            <div>
+              <b>Biology and Research</b>
+              <p>Explore datasets with many measurements.</p>
+            </div>
+          </div>
+
+          <div>
+            <span>📊</span>
+            <div>
+              <b>Data Visualization</b>
+              <p>Plot high-dimensional data in 2D or 3D.</p>
+            </div>
+          </div>
+
+          <div>
+            <span>🧹</span>
+            <div>
+              <b>Noise Reduction</b>
+              <p>Discard some low-variance directions when appropriate.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel" id="example">
+        <span class="section-kicker">07 — REAL-LIFE EXAMPLE</span>
+        <h2>Student Performance Data</h2>
+        <p>
+          A student dataset may contain study hours, attendance,
+          assignment marks and quiz marks. Some of these features may
+          contain overlapping information.
+        </p>
+
+        <div class="example-flow">
+          <div class="example-box">
+            <b>4 Features</b>
+            <small>
+              Study hours<br>
+              Attendance<br>
+              Assignment score<br>
+              Quiz score
+            </small>
+          </div>
+
+          <div class="flow-arrow">→</div>
+
+          <div class="example-box highlight">
+            <b>2 Components</b>
+            <small>
+              Combined patterns<br>
+              Easier to visualize
+            </small>
+          </div>
+        </div>
+
+        <div class="callout">
+          <b>Important:</b> PCA is an unsupervised transformation.
+          It preserves directions with high variance; it does not necessarily
+          preserve the features most useful for predicting a target.
+        </div>
+      </article>
+
+      <article class="panel output-panel" id="output">
+        <span class="section-kicker">08 — SAMPLE OUTPUT</span>
+        <h2>What Will the Program Display?</h2>
+
+        <div class="terminal">
+          <div class="terminal-top">
+            <span></span><span></span><span></span>
+            <b>Console Output</b>
+          </div>
+          <pre>Original shape: (150, 4)
+Reduced shape: (150, 2)
+Variance explained: [0.73 0.23]
+Total variance kept: 95.8 %</pre>
+        </div>
+
+        <p class="small-note">
+          Illustrative output. Exact variance values depend on the dataset
+          and preprocessing.
+        </p>
+      </article>
+
+      <article class="panel pros-cons">
+        <span class="section-kicker">09 — ADVANTAGES & LIMITATIONS</span>
+        <h2>What to Remember</h2>
+
+        <div class="pros-cons-grid">
+          <div class="pros">
+            <h3>✓ Advantages</h3>
+            <ul>
+              <li>Reduces dimensionality.</li>
+              <li>Can speed up later analysis.</li>
+              <li>Helps visualize complex datasets.</li>
+              <li>Can reduce some noise.</li>
+            </ul>
+          </div>
+
+          <div class="cons">
+            <h3>! Limitations</h3>
+            <ul>
+              <li>Some information may be lost.</li>
+              <li>Components can be hard to interpret.</li>
+              <li>Captures linear patterns.</li>
+              <li>Results can depend on scaling.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel conclusion" id="conclusion">
+        <span class="section-kicker">10 — CONCLUSION</span>
+        <div class="conclusion-icon">✦</div>
+        <h2>Fewer Dimensions. More Insight.</h2>
+        <p>
+          PCA is a useful technique for simplifying high-dimensional data.
+          By retaining components that explain much of the variance, it can
+          make datasets easier to visualize and analyze.
+        </p>
+        <a class="back-top" href="#top">Back to Top ↑</a>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><span class="brand-icon">✦</span> ML Blogs</a>
+    <span>Learn · Build · Grow</span>
+    <div class="footer-links">
+      <a href="#intro">PCA</a>
+      <a href="#python">Python Example</a>
+      <a href="#applications">Applications</a>
+    </div>
+    <small>Educational Demo · Principal Component Analysis</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
